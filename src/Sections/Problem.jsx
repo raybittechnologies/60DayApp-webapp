@@ -16,9 +16,10 @@ export default function Problem() {
         <div className="flex flex-col items-center max-w-[639px] h-[284px] gap-[24px] mb-[80px] ">
           <EyebrowPill variant="label">The Problem</EyebrowPill>
 
-          <h2 className="
-            font-heading font-extrabold text-[56px] leading-[1.1] tracking-[-1.5px] text-[#1A1A1A] text-center w-full
-          ">
+          <h2 
+            className="font-bold text-[48px] leading-[1.2] tracking-[-0.5px] text-[#1A1A1A] text-center w-full"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+          >
             Why Most StartUp MVPs
             <br />
             <span className="text-brand-orange">Never Launch?</span>
