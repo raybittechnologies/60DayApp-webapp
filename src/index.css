@@ -1,0 +1,108 @@
+/* ============================================================
+   index.css — The ONLY CSS file in this project
+   
+   This file has 3 jobs and 3 jobs only:
+   1. Load Google Fonts (Poppins + Inter)
+   2. Turn on Tailwind
+   3. Set global browser defaults
+   
+   Everything else — colors, spacing, shadows, rounded corners —
+   lives in tailwind.config.js and gets used as className="..."
+   in JSX. You should almost never need to add anything here.
+   ============================================================ */
+
+
+/* ── JOB 1: LOAD FONTS ────────────────────────────────────────
+   
+   We use 2 fonts:
+     Poppins → headings and buttons (geometric, bold feel)
+     Inter   → body text and labels (clean, easy to read)
+   
+   We load specific weights only — don't load weights you won't
+   use, it slows the page down.
+   
+   display=swap means: show system font first, swap when loaded.
+   This prevents invisible text while fonts are downloading.
+─────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+
+/* ── JOB 2: TURN ON TAILWIND ──────────────────────────────────
+   
+   These 3 lines inject Tailwind's styles into the page.
+   
+   @tailwind base       → resets browser defaults (removes margins,
+                          standardizes box-sizing, etc.)
+   @tailwind components → (we don't use this — it's for component
+                          classes like .btn, .card, etc.)
+   @tailwind utilities  → generates ALL utility classes:
+                          flex, text-xl, bg-white, rounded-lg, etc.
+                          Only classes that actually appear in your
+                          JSX files are included (Tailwind scans them)
+─────────────────────────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ── JOB 3: GLOBAL DEFAULTS ───────────────────────────────────
+   
+   @layer base means these styles go INTO Tailwind's base layer,
+   so Tailwind utility classes can still override them.
+   
+   Without @layer base, your styles could accidentally win over
+   Tailwind's utility classes due to CSS specificity.
+─────────────────────────────────────────────────────────────── */
+@layer base {
+
+  /* Makes scrolling smooth when clicking anchor links (#how, #about) */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Makes text render sharper/crisper on Mac and retina screens.
+     Without this, text can look slightly blurry or heavy. */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide the scrollbar visually — the page still scrolls normally.
+     Keeps the UI clean, especially on overflow containers. */
+  * {
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* Internet Explorer / Edge */
+  }
+  *::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari, Opera */
+  }
+
+  /* Remove underlines from all links by default.
+     If you need an underline somewhere, add it with className="underline" */
+  a {
+    text-decoration: none;
+  }
+
+  /* Prevent images from ever being wider than their container.
+     display: block removes the small gap below images (caused by inline baseline) */
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+}
+
+
+/* ── THAT'S IT. ───────────────────────────────────────────────
+   
+   There are NO custom classes here. No .hero { }, no .btn-primary { }.
+   
+   Every visual style is written as Tailwind classes in JSX:
+     className="bg-white rounded-[32px] shadow-card flex items-center"
+   
+   Every design token (color, font, shadow) is in tailwind.config.js.
+   
+   This file stays small forever. If you feel like adding a custom
+   CSS class here, stop and ask: "can I do this with Tailwind?" — 
+   the answer is almost always yes.
+─────────────────────────────────────────────────────────────── */
