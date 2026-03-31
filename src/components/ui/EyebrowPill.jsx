@@ -1,20 +1,21 @@
 
 import React from 'react';
 
-export default function EyebrowPill({ variant = 'nav', children }) {
+export default function EyebrowPill({ variant = 'nav', width, height, children }) {
   
-  // ── Section Label variant (used in Problem, Process, Features etc.)
   if (variant === 'label') {
     return (
       <div className="
-        w-[174px] h-[40px]
         inline-flex items-center justify-center gap-[12px]
         pt-[6px] pr-[12px] pb-[6px] pl-[12px]
-        rounded-[32px]
         border-[1px] border-brand-orange/40
         bg-brand-orange/10
         text-brand-orange
-      " style={{ borderRadius: '48px' }}>
+      " style={{ 
+        borderRadius: '48px',
+        width: width ? width : 'max-content',
+        height: height ? height : '40px'
+      }}>
         <span className="w-[8px] h-[8px] rounded-full bg-brand-orange flex-none mt-[1px]" />
         <span 
           className="font-semibold text-[20px] tracking-normal leading-[1.4]" 
@@ -26,7 +27,6 @@ export default function EyebrowPill({ variant = 'nav', children }) {
     );
   }
 
-  // ── Nav variant (default — existing Navbar usage, unchanged)
   return (
     <div className="
       flex items-center gap-10

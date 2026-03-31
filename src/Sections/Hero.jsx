@@ -25,8 +25,7 @@ export default function Hero() {
         shadow-card
       ">
 
-        {/* ── LEFT BOX ── */}
-{/* ── LEFT BOX ── */}
+ 
 <div className="flex flex-col w-[657px] h-[528px] justify-center gap-[52px] flex-none">
           <h1 className="
             font-heading font-bold

@@ -215,14 +215,14 @@ export default function CaseStudies() {
   };
 
   return (
-    <section className="relative w-full bg-bg-page flex justify-center items-start pt-[120px] pb-[160px] overflow-hidden">
+    <section className="relative w-full bg-soft-gray flex justify-center items-start pt-[20px] pb-[60px] overflow-hidden">
       <div className="w-full max-w-[1280px] px-[24px] flex flex-col items-center">
         
         {/* Header Section */}
         <div className="flex flex-col items-center mb-[80px]">
           <EyebrowPill variant="label">Case Studies</EyebrowPill>
           
-          <h2 className="font-heading font-extrabold text-[48px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
+          <h2 className="font-heading font-bold text-[48px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
             Real Startups. <br /> <span className="text-[#FA6A31]">Real Results.</span>
           </h2>
         </div>

@@ -1,13 +1,12 @@
 import React from 'react';
+import founderImg from '../assets/images/person_image.png';
 
 const GeometricFounder = () => (
-  // A clean, abstract CSS representation of the founder photo from the mockup
   <div className="relative w-[340px] h-[360px] mx-auto flex flex-col items-center mt-auto justify-end drop-shadow-lg z-10 transition-transform duration-500 hover:scale-[1.02]">
      {/* Head */}
      <div className="w-[110px] h-[130px] rounded-[50px] bg-gradient-to-b from-[#7D5A50] to-[#593930] border-[4px] border-[#FDF8F5] shadow-sm z-10 -mb-[24px]" />
      {/* Body */}
      <div className="w-[200px] h-[200px] bg-gradient-to-t from-[#B2C6D1] to-[#E5EDF1] rounded-t-[80px] z-20 flex justify-center items-end pb-[24px] relative overflow-hidden">
-        {/* Striped shirt pattern overlay */}
         <div className="absolute inset-0 opacity-40">
            <div className="w-full h-[12px] bg-white mt-[30px]" />
            <div className="w-full h-[12px] bg-white mt-[20px]" />
@@ -15,9 +14,7 @@ const GeometricFounder = () => (
            <div className="w-full h-[12px] bg-white mt-[20px]" />
         </div>
         
-        {/* Mock Laptop Layered on top */}
         <div className="w-[180px] h-[110px] bg-gradient-to-b from-white to-[#F8FAFC] rounded-t-[12px] shadow-[0_-4px_16px_rgba(0,0,0,0.1)] absolute bottom-[0px] left-1/2 -translate-x-1/2 z-30 flex items-center justify-center border-t-[8px] border-[#F1F5F9]">
-           {/* Apple logo placeholder via geometric dot */}
            <div className="w-[20px] h-[20px] rounded-full bg-[#E2E8F0]" />
         </div>
      </div>
@@ -26,14 +23,14 @@ const GeometricFounder = () => (
 
 export default function CTA() {
   return (
-    <section className="relative w-full bg-white flex justify-center items-start pt-[120px] pb-[160px]">
-      <div className="w-full max-w-[1080px] px-[24px] flex flex-col gap-[32px] md:gap-[48px]">
+    <section className="relative w-full bg-soft-gray flex justify-center items-start pt-[10px] pb-[60px]">
+      <div className="w-full max-w-[1280px] h-[1192px] px-[38px] flex flex-col gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[40px] pb-[40px]">
         
         {/* Top CTA Block: "Ready to Launch Your Startup?" */}
-        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border-[1.5px] border-[#FAEDE8] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[64px] px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
+        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border-[1.5px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[64px] px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
           
-          <h2 className="font-heading font-extrabold text-[36px] md:text-[44px] text-[#111] leading-[1.15] tracking-tight max-w-[600px]">
-            Ready to Launch Your <span className="text-[#DE6235]">Startup ?</span>
+          <h2 className="font-heading font-extrabold text-[36px] md:text-[44px] text-[#1A1A1A] leading-[1.15] tracking-tight max-w-[753px] h-[58px]">
+            Ready to Launch Your <span className="text-[#F05A28]">Startup ?</span>
           </h2>
           
           <p className="font-body font-bold text-[16px] text-[#4A4A4A] mt-[16px]">
@@ -59,22 +56,22 @@ export default function CTA() {
 
 
         {/* Bottom CTA Block: "Let's get you started!" Form Area */}
-        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border-[1.5px] border-[#FAECE6] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[56px] lg:pt-[80px] relative mt-[16px]">
+        <div className="w-full h-[1199px] bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border-[1.5px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[56px] relative mt-[16px]">
           
-          <h2 className="font-heading font-extrabold text-[44px] lg:text-[56px] text-[#A63510] text-center z-20 px-[24px] leading-none tracking-tight">
+          <h2 className="font-heading font-extrabold text-[44px] lg:text-[56px] text-[#C03A10] text-center z-20 px-[24px] leading-none tracking-tight">
             Let's get you started!
           </h2>
           
-          <div className="flex flex-col lg:flex-row items-end flex-grow">
+          <div className="flex flex-col lg:flex-row items-end flex-grow ">
             
             {/* Left Half: Geometric Founder Container */}
-            <div className="relative w-full lg:w-1/2 flex justify-center self-end mt-auto pt-[40px] px-[24px]">
-              <GeometricFounder />
+            <div className="relative w-full h-[659px] w-[574px] lg:w-1/2 flex justify-center self-end mt-auto pt-[40px] px-[24px]">
+              <img src={founderImg} alt=""  />
             </div>
             
             {/* Right Half: Opt-in Form */}
-            <div className="w-full lg:w-1/2 p-[24px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[48px] lg:pb-[56px]">
-              <div className="w-full max-w-[460px] bg-white rounded-[24px] p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border-[1px] border-white/80">
+            <div className="w-full lg:w-1/2 p-[4px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[4px] lg:pb-[56px]">
+              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border-[1px] border-white/80">
                  
                  <form className="flex flex-col gap-[16px]" onSubmit={(e) => e.preventDefault()}>
                     <h3 className="font-heading font-extrabold text-[20px] text-[#1A1A1A] mb-[8px] text-center tracking-tight leading-tight">

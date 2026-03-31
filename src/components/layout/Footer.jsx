@@ -2,12 +2,10 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-white pb-[64px] flex justify-center">
+    <footer className="w-full bg-soft-gray pb-[64px] flex justify-center">
       <div className="w-full max-w-[1280px] px-[24px]">
-        {/* Soft Beige Container matching the top CTA block style */}
         <div className="w-full bg-gradient-to-br from-[#F5E6DF] to-[#EBE0DA] rounded-[32px] p-[48px] lg:p-[64px] border border-white shadow-[0_8px_32px_rgba(200,100,50,0.06)] flex flex-col">
           
-          {/* Upper Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1fr] gap-[48px] lg:gap-[32px]">
             
             {/* Column 1: Logo & Mission */}

@@ -4,7 +4,6 @@ import EyebrowPill from '../components/ui/EyebrowPill';
 const FeatureCard = ({ title, heading, desc, badgeRight, badgeBottom, tags, bottomSection, icon, className }) => (
   <div className={`relative flex flex-col p-[32px] md:p-[40px] bg-[#F7EBE5] rounded-[24px] overflow-hidden border border-white/80 shadow-[0_8px_24px_rgba(200,100,50,0.06),_inset_0_2px_4px_rgba(255,255,255,0.6)] ${className}`}>
      
-     {/* Glowing radial gradient in the bottom right corner */}
      <div className="absolute -bottom-[30%] -right-[20%] w-[80%] h-[80%] bg-[radial-gradient(ellipse_at_center,_rgba(240,110,60,0.35)_0%,_rgba(240,110,60,0)_60%)] pointer-events-none" />
 
      {/* Header Row */}
@@ -23,7 +22,6 @@ const FeatureCard = ({ title, heading, desc, badgeRight, badgeBottom, tags, bott
         )}
      </div>
 
-     {/* Badge Bottom (Feature 01, 06) */}
      {badgeBottom && (
         <div className="relative z-10 mt-[16px]">
            <span className="bg-[#CC4D22] text-white text-[12px] font-bold px-[16px] py-[6px] rounded-full tracking-wide inline-block">
@@ -75,12 +73,9 @@ export default function Features() {
   };
 
   return (
-    <section className="relative w-full bg-bg-page flex justify-center items-start overflow-hidden pt-[120px] pb-[160px]">
+    <section className="relative w-full bg-soft-gray flex justify-center items-start overflow-hidden pt-[60px] pb-[60px]">
       
-      {/* Dynamic Background Glows */}
-      <div className="absolute top-[80px] left-[-150px] w-[600px] h-[600px] bg-[#FFE1D4] blur-[150px] rounded-full opacity-50 pointer-events-none" />
-      <div className="absolute top-[80px] right-[-150px] w-[600px] h-[600px] bg-[#FFE1D4] blur-[150px] rounded-full opacity-50 pointer-events-none" />
-
+     
       <div className="relative z-10 w-full max-w-[1280px] px-[24px] flex flex-col items-center">
         
         {/* Header Section */}
@@ -99,9 +94,7 @@ export default function Features() {
         {/* Feature Grid Container */}
         <div className="relative w-full flex flex-col gap-[24px]">
           
-          {/* Arrow Overlay between rows */}
           <svg className="hidden lg:block absolute left-[40%] top-[48%] -translate-x-1/2 -translate-y-1/2 w-[160px] h-[100px] z-20 pointer-events-none drop-shadow-sm" viewBox="0 0 160 100" fill="none">
-             {/* Hand drawn looping arrow pointing down-left */}
              <path d="M 150 20 C 170 0, 190 60, 140 70 C 90 80, 60 50, 30 70" stroke="#FA8558" strokeWidth="5" strokeLinecap="round" fill="none" />
              <path d="M 50 50 L 25 75 L 55 90" stroke="#FA8558" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
@@ -151,7 +144,6 @@ export default function Features() {
             </div>
           </div>
 
-          {/* Bottom Row: Left Wide (stacked), Right Narrow (tall) */}
           <div className="flex flex-col lg:flex-row gap-[24px] w-full mt-[12px] lg:mt-0">
             {/* Left Col */}
             <div className="w-full lg:w-[58%] flex flex-col gap-[24px]">
