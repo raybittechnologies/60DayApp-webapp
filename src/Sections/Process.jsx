@@ -1,44 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import EyebrowPill from '../components/ui/EyebrowPill';
-import blueprintImg from '../assets/images/blueprint.png';
-import buildImg from '../assets/images/build.png';
-import adminImg from '../assets/images/admin.png';
-import launchImg from '../assets/images/launch.png';
+
+import blueprintImg from '../assets/svgs/blueprint.svg';
+import buildImg from '../assets/svgs/build.svg';
+import adminImg from '../assets/svgs/admin.svg';
+import launchImg from '../assets/svgs/launch.svg';
 
 const GreenTick = () => (
   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13.33 4L6 11.33 2.67 8" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M13.33 4L6 11.33 2.67 8" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-const ProcessCard = ({ title, desc, iconImg, items }) => (
-  <div className="relative w-full h-full bg-[#FE8C64] rounded-[24px] overflow-hidden flex flex-col cursor-default shadow-[0_8px_24px_rgba(43,46,52,0.06)] border border-[#E5DAD2] z-0">
-    
-    <div className="absolute bottom-0 left-0 w-full h-[calc(100%-110px)] bg-[#EBE2DA] rounded-tr-[28px] rounded-tl-none z-10" />
+const ProcessCard = ({ title, desc, items, iconImg }) => (
+  <div
+    className="relative w-full h-full rounded-[32px] overflow-hidden flex flex-col cursor-default"
+    style={{
+      background: 'rgba(240, 90, 40, 0.08)',
+      boxShadow: '0 0 0 1px rgba(240, 90, 40, 0.05), 0 4px 12px rgba(240, 90, 40, 0.08)'
+    }}
+  >
+    {/* 1. Orange Header */}
+    <div className="relative w-full h-[140px] bg-[#FF8055] rounded-bl-[48px]">
 
-   
-    <img 
-      src={iconImg} 
-      alt={title} 
-      className="absolute top-[20px] left-1/2 -translate-x-1/2 w-[72px] h-[72px] object-contain z-30 drop-shadow-[0_4px_12px_rgba(43,46,52,0.08)]" 
-    />
+      {/* Circle Badge containing the SVG */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center z-30 shadow-lg p-4">
+        <img
+          src={iconImg}
+          alt={`${title} icon`}
+          className="w-full h-full object-contain"
+        />
+      </div>
 
-    {/* Content Box */}
-    <div className="relative z-20 flex flex-col flex-grow pt-[132px] px-[20px] pb-[32px]">
-      <h3 className="font-heading font-extrabold text-[32px] text-center text-[#1A1A1A] leading-none tracking-[-0.02em]">{title}</h3>
-      <p className="text-center font-body text-[16px] font-medium leading-[1.65] text-[#2B2E34] mt-[16px] px-[2px]">
+      {/* 2. The Inverted Scoop (Bottom-Right) */}
+      <div className="absolute right-0 bottom-[-48px] w-[48px] h-[48px] z-20">
+        <svg viewBox="0 0 48 48" className="w-full h-full fill-[#FF8055]">
+          <path d="M0 0 Q 48 0 48 48 L 48 0 Z" />
+        </svg>
+      </div>
+    </div>
+
+    {/* 3. Body Content */}
+    <div className="flex flex-col flex-grow px-[24px] pb-[32px] pt-[32px]">
+      <h3 className="font-heading font-[600] text-[28px] text-center text-[#1A1A1A] leading-tight tracking-tight">
+        {title}
+      </h3>
+
+      <p className="text-center font-[400] text-[18px]  leading-[1.6] text-[#1A1A1A] mt-[16px] px-2  font-inter">
         {desc}
       </p>
 
-      {/* List items specific to each card */}
-      <div className="mt-auto">
-        <ul className="grid grid-cols-2 gap-x-[12px] gap-y-[16px] pl-[8px]">
+      {/* Feature Grid */}
+      <div className="mt-auto pt-[20px]">
+        <ul className="grid grid-cols-2 gap-x-[1px] gap-y-[10px]">
           {items.map((item, idx) => (
-            <li key={idx} className={`flex items-start gap-[8px] text-[#1A1A1A] text-[14px] font-medium tracking-tight leading-[1.3] ${item.fullWidth ? 'col-span-2' : ''}`}>
-              <div className="mt-[2px] flex-shrink-0">
+            <li
+              key={idx}
+              className={`flex items-start gap-[8px] font-[400] text-[#1A1A1A] text-[12px]  leading-tight ${item.fullWidth ? 'col-span-2' : ''
+                }`}
+            >
+              <div className="flex-shrink-0 mt-0.5">
                 <GreenTick />
               </div>
-              <span className="truncate pt-[1px]">{item.text}</span>
+              <span>{item.text}</span>
             </li>
           ))}
         </ul>
@@ -48,34 +72,35 @@ const ProcessCard = ({ title, desc, iconImg, items }) => (
 );
 
 const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, activeStep }) => {
-  // A contiguous line connecting between the PREVIOUS active node and the CURRENT active node
   const isLeftLineActive = idx === activeStep;
   const isRightLineActive = idx === activeStep - 1;
 
   return (
     <div className="relative w-full flex flex-col items-center h-full">
-      
-      
-      {!isFirst && <div className={`hidden lg:block absolute top-[29px] left-0 right-1/2 h-[5px] transition-colors duration-500 z-0 ${isLeftLineActive ? 'bg-[#F05A28]' : 'bg-[#E5E7EB]'}`} />}
-      {!isLast && <div className={`hidden lg:block absolute top-[29px] left-1/2 right-[-42px] h-[5px] transition-colors duration-500 z-0 ${isRightLineActive ? 'bg-[#F05A28]' : 'bg-[#E5E7EB]'}`} />}
-      
+
+      {!isFirst && (
+        <div className={`hidden lg:block absolute top-[29px] left-0 right-1/2 h-[5px] transition-colors duration-500 z-0 ${isLeftLineActive ? 'bg-[#FF8055]' : 'bg-[#E5E7EB]'}`} />
+      )}
+      {!isLast && (
+        <div className={`hidden lg:block absolute top-[29px] left-1/2 right-[-42px] h-[5px] transition-colors duration-500 z-0 ${isRightLineActive ? 'bg-[#FF8055]' : 'bg-[#E5E7EB]'}`} />
+      )}
+
       {/* Number Node */}
       <div className={`relative z-10 w-[56px] h-[56px] rounded-full flex items-center justify-center font-heading font-extrabold text-[16px] transition-all duration-500
-        ${active 
-          ? 'bg-[#F05A28] text-white border-[6px] border-[#FFCAB2]' 
-          : 'bg-[#F6F6F6] text-[#9AA0A6] border-[2px] border-[#D1C6C0]'
+        ${active
+          ? 'bg-[#FF8055] text-white border-[1px] border-[#FFCAB2]'
+          : 'bg-[#F3F4F6] text-[#9AA0A6] border-[2px] border-[#E5E7EB]'
         }
       `}>
         {number}
       </div>
 
-      <div className={`w-[2px] h-[32px] transition-colors duration-500 ${active ? 'bg-[#F05A28]' : 'bg-[#D1C6C0]'}`} />
+      <div className={`w-[2px] h-[32px] transition-colors duration-500 ${active ? 'bg-[#FF8055]' : 'bg-[#E5E7EB]'}`} />
 
-      {/* The Card */}
+      {/* Card */}
       <div className="w-full flex-grow flex">
         <ProcessCard {...cardData} />
       </div>
-
     </div>
   );
 };
@@ -86,14 +111,13 @@ export default function Process() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % 4);
-    }, 3000); // 3 seconds per step progression
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   const steps = [
     {
       number: "01",
-      active: true,
       cardData: {
         title: "Blueprint",
         desc: "Define MVP features, user flows and wireframes. Lock Scope before writing a single line of code.",
@@ -107,7 +131,6 @@ export default function Process() {
     },
     {
       number: "02",
-      active: false,
       cardData: {
         title: "Build",
         desc: "Cross-platform mobile app development. iOS and Android built simultaneously with clean architecture.",
@@ -121,7 +144,6 @@ export default function Process() {
     },
     {
       number: "03",
-      active: false,
       cardData: {
         title: "Admin",
         desc: "Backend infrastructure, admin dashboard, and payment integration. The engine powering your app.",
@@ -135,7 +157,6 @@ export default function Process() {
     },
     {
       number: "04",
-      active: false,
       cardData: {
         title: "Launch",
         desc: "App Store and Play Store submission, QA, go-live support. Your startup is officially live.",
@@ -150,19 +171,19 @@ export default function Process() {
   ];
 
   return (
-    <section className="relative w-full bg-soft-gray flex justify-center items-start overflow-hidden">
+    <section className="relative w-full flex justify-center items-start overflow-hidden ">
       <div className="w-[1280px] px-[24px] flex flex-col items-center">
-        
-        {/* Header Section */}
+
+        {/* Header */}
         <div className="flex flex-col items-center max-w-[800px] mb-[64px]">
           <EyebrowPill variant="label">How it Works</EyebrowPill>
-          
+
           <h2 className="font-heading font-extrabold text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
             Our <span className="text-[#F05A28]">60-Day</span> Launch <br /> Framework
           </h2>
-          
+
           <p className="font-body text-[18px] leading-[1.6] font-extrabold text-[#222222] text-center mt-[24px]">
-            A battle tested 4-phase process. From <span className="text-[#F05A28]">concept to App Store</span> <br /> in exactly 60 days --- no exceptions
+            A battle tested 4-phase process. From <span className="text-[#F05A28]">concept to App Store</span> <br /> in exactly 60 days — no exceptions
           </p>
         </div>
 

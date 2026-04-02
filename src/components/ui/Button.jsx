@@ -10,7 +10,7 @@ const Button = ({
 
   const base = `
     inline-flex items-center justify-center gap-[10px]
-    w-[207px] h-[70px]
+    w-max-[207px] h-min-[70px]
     rounded-[32px]
     px-8 py-4
     font-heading font-semibold text-xl
@@ -25,7 +25,7 @@ const Button = ({
   const variants = {
 
     primary: `
-      bg-brand-orange
+      bg-brand-orange-light
       text-white
       border-brand-orange
       shadow-orange
@@ -34,11 +34,12 @@ const Button = ({
     `,
 
     ghost: `
-      bg-transparent
-      text-white
-      border-white/20
-      hover:bg-white/5
-      hover:border-white/30
+      bg-rgba(255, 255, 255, 0.05)
+      text-[#F05A28]
+      border-[#F05A28]
+      shadow-orange
+      hover:bg-brand-orange-dark
+      hover:shadow-orange-lg
     `,
   };
 

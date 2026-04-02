@@ -33,10 +33,10 @@ export default {
           orange: '#F05A28',
           'orange-light': '#FF8055',
         },
-        bg: {
-          page: '#F5F6F8',
-          'soft-gray': '#F5F6F8',
-        },
+        // bg: {
+        //   page: '#F5F6F8',
+        //   'soft-gray': '#F5F6F8',
+        // },
         text: {
           primary: '#1A1A1A',
           body: '#6B7280',

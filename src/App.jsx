@@ -16,7 +16,7 @@ import Footer      from './components/layout/Footer';
 function App() {
   return (
    
-    <div className="w-full max-w-[1440px] mx-auto min-h-screen bg-bg-soft-gray relative overflow-x-hidden">
+    <div className="w-full max-w-[1440px] mx-auto min-h-screen bg-[#FFF3EE] relative overflow-x-hidden">
 
       <Navbar />
 
