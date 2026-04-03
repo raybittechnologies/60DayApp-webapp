@@ -20,11 +20,11 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
       boxShadow: '0 0 0 1px rgba(240, 90, 40, 0.05), 0 4px 12px rgba(240, 90, 40, 0.08)'
     }}
   >
-    {/* 1. Orange Header */}
-    <div className="relative w-full h-[140px] bg-[#FF8055] rounded-bl-[48px]">
+    {/* Orange Header */}
+    <div className="relative w-full h-[120px] sm:h-[140px] bg-[#FF8055] rounded-bl-[48px]">
 
-      {/* Circle Badge containing the SVG */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center z-30 shadow-lg p-4">
+      {/* Circle Badge */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] sm:w-[72px] sm:h-[72px] bg-white rounded-full flex items-center justify-center z-30 shadow-lg p-3 sm:p-4">
         <img
           src={iconImg}
           alt={`${title} icon`}
@@ -32,7 +32,7 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
         />
       </div>
 
-      {/* 2. The Inverted Scoop (Bottom-Right) */}
+      {/* Inverted Scoop */}
       <div className="absolute right-0 bottom-[-48px] w-[48px] h-[48px] z-20">
         <svg viewBox="0 0 48 48" className="w-full h-full fill-[#FF8055]">
           <path d="M0 0 Q 48 0 48 48 L 48 0 Z" />
@@ -40,24 +40,23 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
       </div>
     </div>
 
-    {/* 3. Body Content */}
-    <div className="flex flex-col flex-grow px-[24px] pb-[32px] pt-[32px]">
-      <h3 className="font-heading font-[600] text-[28px] text-center text-[#1A1A1A] leading-tight tracking-tight">
+    {/* Body Content */}
+    <div className="flex flex-col flex-grow px-[20px] sm:px-[24px] pb-[28px] sm:pb-[32px] pt-[28px] sm:pt-[32px]">
+      <h3 className="font-heading font-[600] text-[22px] sm:text-[28px] text-center text-[#1A1A1A] leading-tight tracking-tight">
         {title}
       </h3>
 
-      <p className="text-center font-[400] text-[18px]  leading-[1.6] text-[#1A1A1A] mt-[16px] px-2  font-inter">
+      <p className="text-center font-[400] text-[16px] sm:text-[18px] leading-[1.6] text-[#1A1A1A] mt-[12px] sm:mt-[16px] px-1 font-inter">
         {desc}
       </p>
 
       {/* Feature Grid */}
-      <div className="mt-auto pt-[20px]">
-        <ul className="grid grid-cols-2 gap-x-[1px] gap-y-[10px]">
+      <div className="mt-auto pt-[16px] sm:pt-[20px]">
+        <ul className="grid grid-cols-2 gap-x-[1px] gap-y-[8px] sm:gap-y-[10px]">
           {items.map((item, idx) => (
             <li
               key={idx}
-              className={`flex items-start gap-[8px] font-[400] text-[#1A1A1A] text-[12px]  leading-tight ${item.fullWidth ? 'col-span-2' : ''
-                }`}
+              className={`flex items-start gap-[8px] font-[400] text-[#1A1A1A] text-[11px] sm:text-[12px] leading-tight ${item.fullWidth ? 'col-span-2' : ''}`}
             >
               <div className="flex-shrink-0 mt-0.5">
                 <GreenTick />
@@ -86,7 +85,7 @@ const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, active
       )}
 
       {/* Number Node */}
-      <div className={`relative z-10 w-[56px] h-[56px] rounded-full flex items-center justify-center font-heading font-extrabold text-[16px] transition-all duration-500
+      <div className={`relative z-10 w-[48px] h-[48px] sm:w-[56px] sm:h-[56px] rounded-full flex items-center justify-center font-heading font-extrabold text-[14px] sm:text-[16px] transition-all duration-500
         ${active
           ? 'bg-[#FF8055] text-white border-[1px] border-[#FFCAB2]'
           : 'bg-[#F3F4F6] text-[#9AA0A6] border-[2px] border-[#E5E7EB]'
@@ -95,7 +94,7 @@ const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, active
         {number}
       </div>
 
-      <div className={`w-[2px] h-[32px] transition-colors duration-500 ${active ? 'bg-[#FF8055]' : 'bg-[#E5E7EB]'}`} />
+      <div className={`w-[2px] h-[24px] sm:h-[32px] transition-colors duration-500 ${active ? 'bg-[#FF8055]' : 'bg-[#E5E7EB]'}`} />
 
       {/* Card */}
       <div className="w-full flex-grow flex">
@@ -171,24 +170,24 @@ export default function Process() {
   ];
 
   return (
-    <section className="relative w-full flex justify-center items-start overflow-hidden ">
-      <div className="w-[1280px] px-[24px] flex flex-col items-center">
+    <section className="relative w-full flex justify-center items-start overflow-hidden">
+      <div className="w-full max-w-[1280px] px-4 sm:px-8 lg:px-[24px] flex flex-col items-center">
 
         {/* Header */}
-        <div className="flex flex-col items-center max-w-[800px] mb-[64px]">
+        <div className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[56px] lg:mb-[64px]">
           <EyebrowPill variant="label">How it Works</EyebrowPill>
 
-          <h2 className="font-heading font-extrabold text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
+          <h2 className="font-heading font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
             Our <span className="text-[#F05A28]">60-Day</span> Launch <br /> Framework
           </h2>
 
-          <p className="font-body text-[18px] leading-[1.6] font-extrabold text-[#222222] text-center mt-[24px]">
-            A battle tested 4-phase process. From <span className="text-[#F05A28]">concept to App Store</span> <br /> in exactly 60 days — no exceptions
+          <p className="font-body text-[16px] sm:text-[18px] leading-[1.6] font-extrabold text-[#222222] text-center mt-[24px]">
+            A battle tested 4-phase process. From <span className="text-[#F05A28]">concept to App Store</span> in exactly 60 days — no exceptions
           </p>
         </div>
 
         {/* Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[42px] w-full items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] lg:gap-[42px] w-full items-stretch">
           {steps.map((step, idx) => (
             <TimelineColumn
               key={step.number}

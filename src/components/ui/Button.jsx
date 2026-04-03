@@ -1,19 +1,19 @@
 
-
+import React from 'react';
 const Button = ({
   children,
   variant = 'primary',
   showArrow = false,
   className = '',
-  ...props              
+  ...props
 }) => {
 
   const base = `
     inline-flex items-center justify-center gap-[10px]
-    w-max-[207px] h-min-[70px]
-    rounded-[32px]
-    px-8 py-4
-    font-heading font-semibold text-xl
+    min-h-[52px] sm:min-h-[60px]
+    rounded-pill
+    px-6 sm:px-8 py-3 sm:py-4
+    font-heading font-semibold text-base sm:text-xl
     whitespace-nowrap
     border border-solid
     cursor-pointer
@@ -21,24 +21,26 @@ const Button = ({
     active:scale-95
   `;
 
-
   const variants = {
-
+    
     primary: `
       bg-brand-orange-light
       text-white
-      border-brand-orange
+      border-brand-orange-light
       shadow-orange
-      hover:bg-brand-orange-dark
+      hover:bg-[#F05A28]
+      hover:border-[#F05A28]
       hover:shadow-orange-lg
     `,
 
+   
     ghost: `
       bg-rgba(255, 255, 255, 0.05)
       text-[#F05A28]
       border-[#F05A28]
       shadow-orange
-      hover:bg-brand-orange-dark
+      hover:bg-[#F05A28]
+      hover:text-white
       hover:shadow-orange-lg
     `,
   };
@@ -52,7 +54,7 @@ const Button = ({
 
       {showArrow && (
         <svg
-          width="20" height="20"
+          width="18" height="18"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

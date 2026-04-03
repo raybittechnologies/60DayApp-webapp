@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import founderImg from '../assets/images/person_image.png';
 import Button from '../components/ui/Button';
@@ -8,48 +6,51 @@ export default function CTA() {
   const [stage, setStage] = useState('Stripe');
 
   return (
-    /* Standardized section alignment to match Footer */
-    <section className="relative w-full flex justify-center items-start pt-[10px] pb-[60px] px-[20px] md:px-[80px]">
-      <div className="w-full max-w-[1280px] flex flex-col gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[40px] pb-[40px] px-[24px] md:px-[40px]">
+    <section className="relative w-full flex justify-center items-start pt-[10px] pb-[40px] sm:pb-[60px] px-[16px] sm:px-[40px] md:px-[80px]">
+      <div className="w-full max-w-[1280px] flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[32px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
 
         {/* Top CTA Block */}
-        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[64px] px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
-          <h2 className="font-heading font-extrabold text-[36px] md:text-[44px] text-[#1A1A1A] leading-[1.15] tracking-tight max-w-[753px]">
+        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[48px] sm:py-[64px] px-[20px] sm:px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
+          <h2 className="font-heading font-extrabold text-[28px] sm:text-[36px] md:text-[44px] text-[#1A1A1A] leading-[1.15] tracking-tight max-w-[753px]">
             Ready to Launch Your <span className="text-[#F05A28]">Startup?</span>
           </h2>
-          <p className="font-body font-bold text-[16px] text-[#4A4A4A] mt-[16px]">Book a free 15-minute MVP scoping call.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-[20px] mt-[40px] w-full">
+          <p className="font-body font-bold text-[15px] sm:text-[16px] text-[#4A4A4A] mt-[12px] sm:mt-[16px]">Book a free 15-minute MVP scoping call.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-[14px] sm:gap-[20px] mt-[28px] sm:mt-[40px] w-full">
             <Button variant="ghost">Get MVP Estimate</Button>
             <Button variant="primary" showArrow={true}>Start Your MVP</Button>
           </div>
         </div>
 
         {/* Bottom CTA Block */}
-        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[56px] relative">
-          <h2 className="font-heading font-extrabold text-[44px] lg:text-[56px] text-[#C03A10] text-center z-20 px-[24px] leading-none tracking-tight">Let's get you started!</h2>
+        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[40px] sm:pt-[56px] relative">
+          <h2 className="font-heading font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] text-[#C03A10] text-center z-20 px-[20px] sm:px-[24px] leading-none tracking-tight">Let's get you started!</h2>
+
           <div className="flex flex-col lg:flex-row items-end flex-grow">
-            {/* Left Half: Person Image */}
-          <div className="relative w-full lg:w-1/2 self-end" style={{ height: '659px', overflow: 'visible' }}>
-  <img 
-    src={founderImg} 
-    alt="Founder" 
-    className="scale-x-[-1]"
-    style={{ 
-      width: '557.76px', 
-      height: '659.29px', 
-      position: 'absolute', 
-      left: '16px', 
-      objectFit: 'cover',
-      filter: 'drop-shadow(-8px 8px 24px rgba(240,90,40,0.45))'
-    }} 
-  />
-</div>
-            {/* Right Half: Opt-in Form */}
-            <div className="w-full lg:w-1/2 p-[24px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[40px] lg:pb-[56px]">
-              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border-[1px] border-white/80">
-                <div className="flex flex-col gap-[14px]">
+
+            {/* Person Image — hidden on small, shown md+ */}
+            <div className="hidden md:block relative w-full lg:w-1/2 self-end" style={{ height: '500px', overflow: 'visible' }}>
+              <img
+                src={founderImg}
+                alt="Founder"
+                className="scale-x-[-1]"
+                style={{
+                  width: '480px',
+                  height: '500px',
+                  position: 'absolute',
+                  left: '16px',
+                  objectFit: 'cover',
+                  filter: 'drop-shadow(-8px 8px 24px rgba(240,90,40,0.45))'
+                }}
+              />
+            </div>
+
+            {/* Form */}
+            <div className="w-full lg:w-1/2 p-[20px] sm:p-[24px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[32px] sm:pb-[40px] lg:pb-[56px]">
+              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[24px] sm:p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border-[1px] border-white/80">
+                <div className="flex flex-col gap-[12px] sm:gap-[14px]">
+
                   {/* Title */}
-                  <h3 className="font-heading font-extrabold text-[20px] text-[#1A1A1A] mb-[4px] text-center tracking-tight leading-tight">
+                  <h3 className="font-heading font-extrabold text-[18px] sm:text-[20px] text-[#1A1A1A] mb-[4px] text-center tracking-tight leading-tight">
                     Get your MVP plan in <span className="text-[#FA6A31]">24 hours</span>
                   </h3>
 
@@ -60,7 +61,7 @@ export default function CTA() {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
                       </svg>
                     </span>
-                    <input type="text" placeholder="Enter your name" className="w-full h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[16px] text-[#000000] placeholder-[#000000]" />
+                    <input type="text" placeholder="Enter your name" className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[15px] sm:text-[16px] text-[#000000] placeholder-[#000000]" />
                   </div>
 
                   {/* Email */}
@@ -70,18 +71,18 @@ export default function CTA() {
                         <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                       </svg>
                     </span>
-                    <input type="email" placeholder="Enter your email" className="w-full h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[16px] text-[#000000] placeholder-[#000000]" />
+                    <input type="email" placeholder="Enter your email" className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[15px] sm:text-[16px] text-[#000000] placeholder-[#000000]" />
                   </div>
 
                   {/* Startup Stage */}
-                  <div className="border border-[#FF8055] rounded-[10px] p-[14px] flex flex-col gap-[10px]">
-                    <span className="font-body text-[16px] text-[#000000] font-medium">Startup Stage</span>
-                    <div className="flex gap-[10px]">
+                  <div className="border border-[#FF8055] rounded-[10px] p-[12px] sm:p-[14px] flex flex-col gap-[8px] sm:gap-[10px]">
+                    <span className="font-body text-[15px] sm:text-[16px] text-[#000000] font-medium">Startup Stage</span>
+                    <div className="flex gap-[8px] sm:gap-[10px]">
                       {['Stripe', 'Prototype', 'Funded'].map((s) => (
                         <button
                           key={s}
                           onClick={() => setStage(s)}
-                          className={`flex-1 h-[36px] rounded-[8px] border text-[16px] font-body font-medium transition-all flex items-center justify-center gap-[6px]
+                          className={`flex-1 h-[34px] sm:h-[36px] rounded-[8px] border text-[14px] sm:text-[16px] font-body font-medium transition-all flex items-center justify-center gap-[6px]
                             ${stage === s
                               ? 'border-[#FA6A31] text-[#FA6A31] bg-[#FFF5F0]'
                               : 'border-[#FF8055] text-[#000000] bg-white hover:border-[#FF8055]'
@@ -101,7 +102,7 @@ export default function CTA() {
                         <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
                       </svg>
                     </span>
-                    <select className="w-full h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#000000] focus:outline-none focus:border-[#FF8055] font-body text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
+                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
                       <option value="" disabled selected>Target launch date</option>
                       <option value="1month">Within 1 month</option>
                       <option value="2months">Within 2 months</option>
@@ -109,9 +110,7 @@ export default function CTA() {
                       <option value="6months">Within 6 months</option>
                     </select>
                     <span className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[#BCBCBC] pointer-events-none">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                     </span>
                   </div>
 
@@ -122,7 +121,7 @@ export default function CTA() {
                         <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                       </svg>
                     </span>
-                    <select className="w-full h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
+                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
                       <option value="" disabled selected>Budget Range</option>
                       <option value="5k">$5k – $10k</option>
                       <option value="10k">$10k – $25k</option>
@@ -130,9 +129,7 @@ export default function CTA() {
                       <option value="50k">$50k+</option>
                     </select>
                     <span className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[#BCBCBC] pointer-events-none">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                     </span>
                   </div>
 
