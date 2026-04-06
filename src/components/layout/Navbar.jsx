@@ -13,7 +13,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Lock body scroll while menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -23,9 +22,22 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── NAV BAR ── */}
-      <nav className="absolute top-4 sm:top-6 left-0 right-0 z-[100] flex justify-center w-full px-4 sm:px-8 lg:px-[80px]">
-        <div className="w-full max-w-[1280px] h-[60px] sm:h-[71px] flex items-center justify-between">
+      {/* ── NAV BAR ──
+          Outer nav: absolute, full width, same responsive padding as section-outer.
+          Inner div: max-w-[1280px] + mx-auto = same as section-inner.
+
+          Why not use section-outer/section-inner directly:
+          section-outer switches to `display:flex` at 1360px+ for centering,
+          but absolute-positioned elements ignore flex flow from their parent,
+          so we replicate the padding + max-width manually here instead.
+      -->
+      */}
+      <nav className="
+        absolute top-4 sm:top-6 left-0 right-0 z-[100]
+        w-full
+        px-[16px] sm:px-[40px] 
+      ">
+        <div className="w-full max-w-[1280px] mx-auto h-[60px] sm:h-[71px] flex items-center justify-between">
 
           {/* Logo */}
           <div className="font-heading text-2xl sm:text-3xl font-semibold tracking-tighter flex items-center shrink-0">
@@ -43,31 +55,46 @@ export default function Navbar() {
             <Button variant="primary">Book Free Call</Button>
           </div>
 
-          {/* Hamburger / X — mobile only */}
+          {/* Hamburger / X — mobile only
+              FIX: dynamic classes moved to inline style to avoid Tailwind v4 scan warnings.
+          */}
           <button
             className="sm:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
             onClick={() => setMenuOpen(o => !o)}
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-            <span className={`block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            <span
+              className="block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300 origin-center"
+              style={{ transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}
+            />
+            <span
+              className="block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300"
+              style={{ opacity: menuOpen ? 0 : 1, transform: menuOpen ? 'scaleX(0)' : 'scaleX(1)' }}
+            />
+            <span
+              className="block w-5 h-[2px] bg-text-primary rounded-full transition-all duration-300 origin-center"
+              style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}
+            />
           </button>
         </div>
       </nav>
 
-      {/* ── MOBILE MENU OVERLAY ── */}
-      {/* Backdrop — tapping it closes the menu */}
+      {/* ── MOBILE MENU BACKDROP ──
+          FIX: dynamic opacity/pointer-events moved to style prop.
+      */}
       <div
-        className={`sm:hidden fixed inset-0 z-[110] bg-black/30 backdrop-blur-[2px] transition-opacity duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className="sm:hidden fixed inset-0 z-[110] bg-black/30 backdrop-blur-[2px] transition-opacity duration-300"
+        style={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none' }}
         onClick={close}
       />
 
-      {/* Slide-down panel */}
+      {/* ── MOBILE SLIDE-DOWN PANEL ──
+          FIX: dynamic translate moved to style prop.
+      */}
       <div
-        className={`sm:hidden fixed top-0 left-0 right-0 z-[120] bg-[#FFF3EE] rounded-b-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-y-0' : '-translate-y-full'}`}
+        className="sm:hidden fixed top-0 left-0 right-0 z-[120] bg-[#FFF3EE] rounded-b-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-in-out"
+        style={{ transform: menuOpen ? 'translateY(0)' : 'translateY(-100%)' }}
       >
-        {/* Panel top row — logo + close */}
         <div className="flex items-center justify-between px-5 h-[72px]">
           <div className="font-heading text-2xl font-semibold tracking-tighter flex items-center">
             <span className="text-text-primary">60Day</span>
@@ -84,10 +111,8 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-border-default mx-5" />
 
-        {/* Links */}
         <div className="flex flex-col px-5 py-3">
           {NAV_LINKS.map(({ href, label }) => (
             <a
@@ -101,7 +126,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
         <div className="px-5 pb-7 pt-2">
           <Button variant="primary" className="w-full justify-center" onClick={close}>
             Book Free Call

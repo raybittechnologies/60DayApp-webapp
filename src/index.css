@@ -1,45 +1,113 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
 
+/* ── DESIGN TOKENS (Tailwind v4 @theme) ──────── */
+@theme {
+  /* Colors */
+  --color-brand-orange:       #F05A28;
+  --color-brand-orange-light: #FF8055;
+  --color-soft-gray:          #F9FAFB;
+  --color-text-primary:       #1A1A1A;
+  --color-text-body:          #4B5563;
+  --color-border-default:     #E5E7EB;
+  --color-bg-peach:           #FFF3EE;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  /* Font Families */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body:    'Inter', sans-serif;
 
+  /* Border Radius */
+  --radius-pill: 9999px;
+  --radius-card: 24px;
 
+  /* Box Shadows */
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-orange:    0 4px 16px rgba(240, 90, 40, 0.25);
+  --shadow-orange-lg: 0 8px 32px rgba(240, 90, 40, 0.35);
+}
 
+/* ── BASE STYLES ─────────────────────────────── */
 @layer base {
-
-  html {
-    scroll-behavior: smooth;
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
 
-  
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-gutter: stable; /* Reserve space for scrollbar */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+    background-color: var(--color-bg-peach);
+    color: #1A1A1A;
+  }
+
+  main {
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* ── LAYOUT HELPERS ──────────────────────────── */
+@layer components {
+
+ 
+
+  .section-outer {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
     
   }
 
- 
-  * {
-    scrollbar-width: none;       
-    -ms-overflow-style: none;     
-  }
-  *::-webkit-scrollbar {
-    display: none;               
+  @media (min-width: 640px) {
+    .section-outer {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
   }
 
-
-  a {
-    text-decoration: none;
-  }
-  img {
-    max-width: 100%;
-    display: block;
+  @media (min-width: 1024px) {
+    .section-outer {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
   }
 
+  @media (min-width: 1360px) {
+    /* At 1360px+ the padding becomes irrelevant —
+       switch to flex centering so inner hits true 1280px */
+    .section-outer {
+      padding-left: 0;
+      padding-right: 0;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .section-inner {
+    width: 100%;
+    max-width: 1280px;
+  }
+
+  
 }
-
-

@@ -1,16 +1,22 @@
+
+
 import React, { useState } from 'react';
-import founderImg from '../assets/images/person_image.png';
-import Button from '../components/ui/Button';
+import founderImg from '../../assets/images/person_image.png';
+import Button from '../../components/ui/Button';
 
 export default function CTA() {
   const [stage, setStage] = useState('Stripe');
 
   return (
-    <section className="relative w-full flex justify-center items-start pt-[10px] pb-[40px] sm:pb-[60px] px-[16px] sm:px-[40px] md:px-[80px]">
-      <div className="w-full max-w-[1280px] flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[32px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
+    /*
+      ─ Use section-outer / section-inner for consistent 1440/1280 layout.
+      ─ The white wrapper card goes INSIDE section-inner, not around it.
+    */
+    <section className="section-outer relative pt-[10px] pb-[40px] sm:pb-[60px]">
+      <div className="section-inner flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[32px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
 
         {/* Top CTA Block */}
-        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[48px] sm:py-[64px] px-[20px] sm:px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
+        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[48px] sm:py-[64px] px-[20px] sm:px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
           <h2 className="font-heading font-extrabold text-[28px] sm:text-[36px] md:text-[44px] text-[#1A1A1A] leading-[1.15] tracking-tight max-w-[753px]">
             Ready to Launch Your <span className="text-[#F05A28]">Startup?</span>
           </h2>
@@ -22,22 +28,22 @@ export default function CTA() {
         </div>
 
         {/* Bottom CTA Block */}
-        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border-[1px] border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[40px] sm:pt-[56px] relative">
+        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[40px] sm:pt-[56px] relative">
           <h2 className="font-heading font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] text-[#C03A10] text-center z-20 px-[20px] sm:px-[24px] leading-none tracking-tight">Let's get you started!</h2>
 
           <div className="flex flex-col lg:flex-row items-end flex-grow">
 
             {/* Person Image — hidden on small, shown md+ */}
-            <div className="hidden md:block relative w-full lg:w-1/2 self-end" style={{ height: '500px', overflow: 'visible' }}>
+            <div className="hidden md:block relative w-full lg:w-1/2 self-end" style={{ height: '650px', overflow: 'visible' }}>
               <img
                 src={founderImg}
                 alt="Founder"
                 className="scale-x-[-1]"
                 style={{
-                  width: '480px',
-                  height: '500px',
+                  width: '500px',
+                  height: '650px',
                   position: 'absolute',
-                  left: '16px',
+                  left: '10px',
                   objectFit: 'cover',
                   filter: 'drop-shadow(-8px 8px 24px rgba(240,90,40,0.45))'
                 }}
@@ -46,7 +52,7 @@ export default function CTA() {
 
             {/* Form */}
             <div className="w-full lg:w-1/2 p-[20px] sm:p-[24px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[32px] sm:pb-[40px] lg:pb-[56px]">
-              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[24px] sm:p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border-[1px] border-white/80">
+              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[24px] sm:p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border border-white/80">
                 <div className="flex flex-col gap-[12px] sm:gap-[14px]">
 
                   {/* Title */}
@@ -82,11 +88,16 @@ export default function CTA() {
                         <button
                           key={s}
                           onClick={() => setStage(s)}
-                          className={`flex-1 h-[34px] sm:h-[36px] rounded-[8px] border text-[14px] sm:text-[16px] font-body font-medium transition-all flex items-center justify-center gap-[6px]
-                            ${stage === s
-                              ? 'border-[#FA6A31] text-[#FA6A31] bg-[#FFF5F0]'
-                              : 'border-[#FF8055] text-[#000000] bg-white hover:border-[#FF8055]'
-                            }`}
+                          /*
+                            ─ FIX: Don't build class strings with ternaries inside template literals.
+                            ─ Instead, apply a base class and use style prop for dynamic colours.
+                          */
+                          className="flex-1 h-[34px] sm:h-[36px] rounded-[8px] border text-[14px] sm:text-[16px] font-body font-medium transition-all flex items-center justify-center gap-[6px]"
+                          style={
+                            stage === s
+                              ? { borderColor: '#FA6A31', color: '#FA6A31', backgroundColor: '#FFF5F0' }
+                              : { borderColor: '#FF8055', color: '#000000', backgroundColor: '#ffffff' }
+                          }
                         >
                           {stage === s && <span className="w-[8px] h-[8px] rounded-full bg-[#FA6A31] inline-block" />}
                           {s}
@@ -103,7 +114,7 @@ export default function CTA() {
                       </svg>
                     </span>
                     <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
-                      <option value="" disabled selected>Target launch date</option>
+                      <option value="" disabled>Target launch date</option>
                       <option value="1month">Within 1 month</option>
                       <option value="2months">Within 2 months</option>
                       <option value="3months">Within 3 months</option>
@@ -122,7 +133,7 @@ export default function CTA() {
                       </svg>
                     </span>
                     <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
-                      <option value="" disabled selected>Budget Range</option>
+                      <option value="" disabled>Budget Range</option>
                       <option value="5k">$5k – $10k</option>
                       <option value="10k">$10k – $25k</option>
                       <option value="25k">$25k – $50k</option>
