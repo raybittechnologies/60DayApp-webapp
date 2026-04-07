@@ -26,7 +26,7 @@ const SummaryCard = ({ title, subtitle, icon }) => (
       px-4 sm:px-6 md:px-8
       py-6 sm:py-8 md:py-12
       w-full
-      transition-transform duration-300 hover:scale-[1.025  ]
+      transition-transform duration-300 hover:scale-[1.025]
     "
     style={{
       background: 'rgba(255, 128, 85, 0.3)',
@@ -69,7 +69,7 @@ const Badge = ({ icon, text, className = '' }) => (
 );
 
 const TestimonialCard = ({ name, role, text, imgUrl }) => (
-  <div className="relative w-full" style={{ padding: '50px 10px 10px 10px' }}>
+  <div className="relative w-full pt-[30px] sm:pt-[40px] md:pt-[50px] px-[10px] pb-[10px] mt-[40px] md:mt-[60px]">
     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 300" preserveAspectRatio="none">
       <path
         d="M10,20 L490,40 Q500,40 500,50 L500,260 Q500,280 480,285 L20,300 Q0,300 0,280 L0,40 Q0,25 10,20 Z"
@@ -78,25 +78,25 @@ const TestimonialCard = ({ name, role, text, imgUrl }) => (
         strokeWidth="2"
       />
     </svg>
-    <span className="absolute font-serif font-black text-[#FF8055] select-none" style={{ fontSize: '200px', top: '-30px', left: '-10px', lineHeight: 1 }}>&ldquo;</span>
-    <div className="absolute rounded-full border-[8px] border-[#FF8055] overflow-hidden shadow-lg bg-white z-10" style={{ width: '150px', height: '150px', top: '-55px', right: '10px' }}>
+    <span className="absolute font-serif font-black text-[#FF8055] select-none text-[80px] sm:text-[120px] md:text-[200px] leading-none top-[-10px] sm:top-[-15px] md:top-[-30px] left-[5px] md:left-[-10px]">&ldquo;</span>
+    <div className="absolute rounded-full border-[3px] sm:border-[5px] md:border-[8px] border-[#FF8055] overflow-hidden shadow-lg bg-white z-10 w-[60px] h-[60px] sm:w-[90px] sm:h-[90px] md:w-[150px] md:h-[150px] top-[-15px] sm:top-[-30px] md:top-[-55px] right-[10px] sm:right-[15px] md:right-[10px]">
       <img src={imgUrl} alt={name} className="w-full h-full object-cover" />
     </div>
-    <div className="relative z-10" style={{ padding: '40px 30px 30px 30px' }}>
-      <div style={{ marginBottom: '14px', paddingRight: '80px' }}>
-        <h4 className="font-[600] text-[#000000]" style={{ fontSize: '28px' }}>{name}</h4>
-        <p style={{ fontSize: '18px', color: '#808080', marginTop: '4px', fontWeight: '400' }}>{role}</p>
+    <div className="relative z-10 px-[15px] sm:px-[25px] md:px-[30px] py-[20px] sm:py-[30px] md:py-[40px]">
+      <div className="mb-[10px] sm:mb-[14px] pr-[55px] sm:pr-[80px] md:pr-[120px]">
+        <h4 className="font-[600] text-[#000000] text-[18px] sm:text-[22px] md:text-[28px] leading-tight">{name}</h4>
+        <p className="text-[13px] sm:text-[15px] md:text-[18px] text-[#808080] mt-[2px] sm:mt-[4px] font-[400]">{role}</p>
       </div>
-      <p style={{ fontSize: '18px', color: '#1A1A1A', lineHeight: '1.7', marginBottom: '22px', fontWeight: '400' }}>{text}</p>
-      <div className="flex gap-0">
+      <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[#1A1A1A] leading-[1.5] sm:leading-[1.6] md:leading-[1.7] mb-[16px] sm:mb-[22px] font-[400]">{text}</p>
+      <div className="flex gap-[2px] sm:gap-[4px]">
         {[...Array(5)].map((_, i) => (
-          <svg key={i} width="50" height="50" viewBox="0 0 24 24" fill="#FA9E0D">
+          <svg key={i} className="w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] md:w-[50px] md:h-[50px]" viewBox="0 0 24 24" fill="#FA9E0D">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
         ))}
       </div>
     </div>
-    <span className="absolute font-serif font-black text-[#FA764E] select-none" style={{ fontSize: '200px', bottom: '-110px', right: '-10px', lineHeight: 1 }}>&rdquo;</span>
+    <span className="absolute font-serif font-black text-[#FA764E] select-none text-[80px] sm:text-[120px] md:text-[200px] leading-none bottom-[-30px] sm:bottom-[-45px] md:bottom-[-90px] right-[5px] md:right-[-10px]">&rdquo;</span>
   </div>
 );
 
@@ -136,7 +136,7 @@ export default function SocialProof() {
     <section id="about" className="section-outer relative pb-[24px] overflow-hidden">
       <div className="section-inner">
         {/* Changed from bg-white to a soft peach to help the white glow pop */}
-        <div className="w-full bg-[#FFF9F6] pb-[60px] pt-[36px] flex flex-col items-center rounded-[24px]">
+        <div className="w-full bg-[#FFF9F6] pb-[80px] sm:pb-[100px] md:pb-[130px] pt-[36px] flex flex-col items-center rounded-[24px]">
 
           <div className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[64px] px-4">
             <EyebrowPill variant="label">Why Choose Us</EyebrowPill>
