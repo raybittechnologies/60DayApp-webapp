@@ -62,9 +62,9 @@ const SummaryCard = ({ title, subtitle, icon }) => (
 
 
 const Badge = ({ icon, text, className = '' }) => (
-  <div className={`flex items-center gap-[8px] px-[16px] sm:px-[20px] py-[8px] sm:py-[10px] bg-gradient-to-r from-[#FFF5EF] to-[#FEF0E8] border-[1.5px] border-[#FAD0BF] rounded-full shadow-sm text-[#F05A28] ${className}`}>
-    <span className="flex-shrink-0">{icon}</span>
-    <span className="font-heading font-bold text-[11px] sm:text-[12px] tracking-tight whitespace-nowrap">{text}</span>
+  <div className={`flex items-center gap-[8px] px-[16px] sm:px-[20px] py-[8px] sm:py-[10px] bg-[#FF80551A] border-[1.5px] border-[#FAD0BF] rounded-full shadow-sm text-[#F05A28] ${className}`}>
+    <span className="flex-shrink-0 w-4 h-4">{icon}</span>
+    <span className="font-heading font-[400] text-[20px] sm:text-[20px] tracking-tight whitespace-nowrap">{text}</span>
   </div>
 );
 
@@ -108,15 +108,28 @@ const TESTIMONIALS = [
     text: "Outstanding work! The freelancer not only delivered the mobile app on time but also exceeded our expectations in terms of design, functionality, and user experience.",
   },
   {
-    name: "Carolyn Willms",
-    role: "Global Accountability Officer",
+    name: "Alex Johnson",
+    role: "Founder at TechFlow",
     imgUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
-    text: "Outstanding work! The freelancer not only delivered the mobile app on time but also exceeded our expectations in terms of design, functionality, and user experience.",
+    text: "60DayApp transformed our idea into a fully functioning product. The speed and quality of development were truly unprecedented in my experience.",
+  },
+  {
+    name: "Sarah Chen",
+    role: "Product Manager",
+    imgUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200",
+    text: "We were struggling to hit our launch deadline until we partnered with Raybit Technologies. They delivered a top-tier MVP that our users absolutely love.",
+  },
+  {
+    name: "Michael Torres",
+    role: "CEO, InnovateX",
+    imgUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+    text: "I couldn't be happier with the results. The team's communication was clear, and they executed on the complex feature requirements without any hiccups.",
   },
 ];
 
 export default function SocialProof() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const ICONS = {
     clock: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l3 3" /></svg>,
@@ -127,6 +140,7 @@ export default function SocialProof() {
     check: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>,
     chevronLeft: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>,
     chevronRight: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>,
+    arrowRight: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>,
   };
 
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
@@ -136,7 +150,7 @@ export default function SocialProof() {
     <section id="about" className="section-outer relative pb-[24px] overflow-hidden">
       <div className="section-inner">
         {/* Changed from bg-white to a soft peach to help the white glow pop */}
-        <div className="w-full bg-[#FFF9F6] pb-[80px] sm:pb-[100px] md:pb-[130px] pt-[36px] flex flex-col items-center rounded-[24px]">
+        <div className="w-full bg-[#FFF9F6] pb-[80px] sm:pb-[100px] md:pb-[80px] pt-[36px] flex flex-col items-center rounded-[24px]">
 
           <div className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[64px] px-4">
             <EyebrowPill variant="label">Why Choose Us</EyebrowPill>
@@ -154,7 +168,7 @@ export default function SocialProof() {
             <SummaryCard title="Top Rated" subtitle="Upwork agency" icon={ICONS.badge} />
           </div>
 
-          <div className="flex flex-col items-center mt-[32px] sm:mt-[48px] mb-[60px] sm:mb-[100px] gap-[14px] sm:gap-[16px] px-4">
+          <div className="flex flex-col items-center mt-[32px] sm:mt-[48px] mb-[60px] sm:mb-[50px] gap-[14px] sm:gap-[16px] px-4">
             <div className="flex flex-wrap justify-center gap-[12px] sm:gap-[20px]">
               <Badge icon={ICONS.trophy} text="Trusted by Startups Worldwide" />
               <Badge icon={ICONS.star} text="Top Rated on Upwork" />
@@ -165,31 +179,50 @@ export default function SocialProof() {
           <div className="w-full max-w-[1180px] px-2 sm:px-4 lg:px-0 flex items-center gap-[8px] sm:gap-[16px] md:gap-[24px]">
             <button
               onClick={handlePrev}
-              className="flex-shrink-0 w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] md:w-[48px] md:h-[48px] rounded-full border-[1.5px] border-[#F26432] flex items-center justify-center text-[#F26432] hover:bg-[#F26432] hover:text-white transition-colors duration-200 shadow-sm z-20"
+              className="flex-shrink-0 hidden lg:flex w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] md:w-[48px] md:h-[48px] rounded-full border-[1.5px] border-[#F26432] items-center justify-center text-[#F26432] hover:bg-[#F26432] hover:text-white transition-colors duration-200 shadow-sm z-20"
             >
               {ICONS.chevronLeft}
             </button>
             <div className="flex-1 min-w-0">
-              <div className="block lg:hidden" style={{ overflowX: 'hidden', overflowY: 'visible' }}>
-                <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-                  {TESTIMONIALS.map((t, i) => (
-                    <div key={i} className="w-full flex-shrink-0">
+              <div className="block lg:hidden w-full pb-[20px]">
+                {showAllMobile ? (
+                  <div className="flex flex-col gap-[70px]">
+                    {TESTIMONIALS.map((t, i) => (
+                      <TestimonialCard key={i} {...t} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex justify-center w-full">
+                    <div className="w-full">
+                      <TestimonialCard {...TESTIMONIALS[0]} />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="hidden lg:flex overflow-hidden py-[20px] -my-[20px] px-[20px] -mx-[20px]">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out gap-[32px] w-full"
+                  style={{ transform: `translateX(calc(-${activeIndex * 50}% - ${activeIndex * 16}px))` }}
+                >
+                  {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                    <div key={i} className="flex-shrink-0 w-[calc(50%-16px)]">
                       <TestimonialCard {...t} />
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="hidden lg:flex flex-row items-start gap-[32px] px-[10px]">
-                {TESTIMONIALS.map((t, i) => (
-                  <div key={i} className="flex-1 min-w-0">
-                    <TestimonialCard {...t} />
-                  </div>
-                ))}
+              <div className="flex justify-center mt-[60px] pb-[10px] lg:hidden relative z-30">
+                <button
+                  onClick={() => setShowAllMobile(!showAllMobile)}
+                  className="flex items-center gap-[8px] px-[24px] py-[10px] sm:px-[30px] sm:py-[12px] bg-gradient-to-r from-[#FFF5EF] to-[#FEF0E8] border-[1.5px] border-[#FAD0BF] rounded-full text-[#F05A28] font-bold text-[15px] sm:text-[16px] hover:scale-105 transition-transform duration-200 shadow-sm"
+                >
+                  {showAllMobile ? 'Show Less' : 'View all Reviews'} {showAllMobile ? '' : ICONS.arrowRight}
+                </button>
               </div>
             </div>
             <button
               onClick={handleNext}
-              className="flex-shrink-0 w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] md:w-[48px] md:h-[48px] rounded-full border-[1.5px] border-[#F26432] flex items-center justify-center text-[#F26432] hover:bg-[#F26432] hover:text-white transition-colors duration-200 shadow-sm z-20"
+              className="flex-shrink-0 hidden lg:flex w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] md:w-[48px] md:h-[48px] rounded-full border-[1.5px] border-[#F26432] items-center justify-center text-[#F26432] hover:bg-[#F26432] hover:text-white transition-colors duration-200 shadow-sm z-20"
             >
               {ICONS.chevronRight}
             </button>

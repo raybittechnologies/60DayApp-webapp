@@ -16,42 +16,58 @@ const GreenTick = () => (
 
 const ProcessCard = ({ title, desc, items, iconImg }) => (
   <div
-    className="relative w-full h-full rounded-[32px] overflow-hidden flex flex-col cursor-default"
+    className="relative mx-auto rounded-[32px] overflow-hidden flex flex-col cursor-default"
     style={{
-      background: 'rgba(240, 90, 40, 0.08)',
+      width: '263px',
+      minHeight: '350px',
+      background: 'rgba(255, 128, 85, 0.1)',
       boxShadow: '0 0 0 1px rgba(240, 90, 40, 0.05), 0 4px 12px rgba(240, 90, 40, 0.08)'
     }}
   >
-    {/* Orange Header */}
-    <div className="relative w-full h-[120px] sm:h-[140px] bg-[#FF8055] rounded-bl-[48px]">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] sm:w-[72px] sm:h-[72px] bg-white rounded-full flex items-center justify-center z-30 shadow-lg p-3 sm:p-4">
+    {/* Orange Header Container with explicitly hardened bottom-left radius style to guarantee visual match */}
+    <div
+      className="relative w-full h-[96px] bg-[#FF8055] shrink-0"
+      style={{ borderBottomLeftRadius: '32px' }}
+    >
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center z-30 shadow-md p-2.5">
         <img src={iconImg} alt={`${title} icon`} className="w-full h-full object-contain" />
       </div>
-      {/* Inverted Scoop */}
-      <div className="absolute right-0 bottom-[-48px] w-[48px] h-[48px] z-20">
-        <svg viewBox="0 0 48 48" className="w-full h-full fill-[#FF8055]">
+      {/* Inverted Scoop with micro-overlap (1px) to prevent sub-pixel hairline scaling gaps */}
+      <div className="absolute right-[-1px] bottom-[-49px] w-[50px] h-[50px] z-20">
+        <svg viewBox="0 0 48 48" className="w-full h-full fill-[#FF8055]" preserveAspectRatio="none">
           <path d="M0 0 Q 48 0 48 48 L 48 0 Z" />
         </svg>
       </div>
     </div>
 
     {/* Body Content */}
-    <div className="flex flex-col flex-grow px-[20px] sm:px-[24px] pb-[28px] sm:pb-[32px] pt-[28px] sm:pt-[32px]">
-      <h3 className="font-heading font-semibold text-[22px] sm:text-[28px] text-center text-[#1A1A1A] leading-tight tracking-tight">
+    <div className="flex flex-col flex-grow px-[16px] pb-[20px] pt-[20px]">
+      <h3 className="font-heading font-bold text-[30px] text-center text-[#1A1A1A] leading-tight tracking-tight">
         {title}
       </h3>
-      <p className="text-center font-normal text-[16px] sm:text-[18px] leading-[1.6] text-[#1A1A1A] mt-[12px] sm:mt-[16px] px-1 font-body">
+      <p className="text-center font-normal text-[15px] lg:text-[18px] leading-[1.5] lg:leading-[1.6] text-[#1A1A1A] mt-[12px] px-1 font-body">
         {desc}
       </p>
-      <div className="mt-auto pt-[16px] sm:pt-[20px]">
-        <ul className="grid grid-cols-2 gap-x-[1px] gap-y-[8px] sm:gap-y-[10px]">
+      <div className="mt-auto pt-[16px]">
+        <ul className="flex flex-wrap justify-between gap-y-[12px] w-full">
           {items.map((item, idx) => (
             <li
               key={idx}
-              className={`flex items-start gap-[8px] font-normal text-[#1A1A1A] text-[11px] sm:text-[12px] leading-tight${item.fullWidth ? ' col-span-2' : ''}`}
+              className={`flex items-start gap-[6px] text-[#1A1A1A] ${item.fullWidth ? 'w-full' : 'w-auto'}`}
             >
-              <div className="flex-shrink-0 mt-0.5"><GreenTick /></div>
-              <span>{item.text}</span>
+              <div className="flex-shrink-0 mt-[4px] flex items-center justify-center"><GreenTick /></div>
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '12px',
+                  lineHeight: '160%',
+                  letterSpacing: '0px',
+                  textAlign: 'left',
+                }}
+              >
+                {item.text}
+              </span>
             </li>
           ))}
         </ul>
@@ -60,12 +76,10 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
   </div>
 );
 
-// ─── FIX: Use style prop for dynamic colors instead of dynamic Tailwind classes ───
-// Tailwind cannot statically extract classes from template literals with ternaries.
-// Moving dynamic colors to inline style eliminates the 696 warnings.
+
 
 const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, activeStep }) => {
-  const isLeftLineActive  = idx === activeStep;
+  const isLeftLineActive = idx === activeStep;
   const isRightLineActive = idx === activeStep - 1;
 
   return (
@@ -86,6 +100,12 @@ const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, active
           style={{ backgroundColor: isRightLineActive ? '#FF8055' : '#E5E7EB' }}
         />
       )}
+
+      {/* Top vertical connector line to bridge the mobile vertical layout gaps */}
+      <div
+        className="lg:hidden absolute left-1/2 -translate-x-1/2 top-[-24px] sm:top-[-32px] w-[2px] h-[24px] sm:h-[32px] transition-colors duration-500 z-0"
+        style={{ backgroundColor: isLeftLineActive ? '#FF8055' : '#E5E7EB' }}
+      />
 
       {/* Step number bubble */}
       <div

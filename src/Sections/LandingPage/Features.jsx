@@ -56,7 +56,7 @@ const FeatureCard = ({ n, label, title, desc, tags = [], icon, extra }) => (
         {tags.map(t => <Tag key={t} text={t} />)}
       </div>
     )}
-   
+
   </div>
 );
 
@@ -76,7 +76,7 @@ const FEATURES = [
     title: 'Mobile App Development',
     desc: 'Cross-platform iOS and Android app built simultaneously. One codebase, both stores, full native performance.',
     tags: ['iOS App Store', 'Google Play Store', 'Cross-platform'],
-   
+
   },
   {
     n: '02', label: 'Infrastructure', icon: ICONS.server,
@@ -141,7 +141,7 @@ export default function Features() {
           className="w-full rounded-[18px] mt-5 py-6 px-8 flex items-center justify-center"
 
         >
-          <p className="text-[32px] sm:text-[40px] md:text-[48px] font-[800] text-[#C03A10] text-center leading-none">
+          <p className="text-[32px] sm:text-[40px] md:text-[64px] font-[800] text-[#C03A10] text-center leading-none">
             Your App is Live!
           </p>
         </div>

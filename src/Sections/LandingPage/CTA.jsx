@@ -5,7 +5,7 @@ import founderImg from '../../assets/images/person_image.png';
 import Button from '../../components/ui/Button';
 
 export default function CTA() {
-  const [stage, setStage] = useState('Stripe');
+  const [stage, setStage] = useState('Idea');
 
   return (
     /*
@@ -33,8 +33,8 @@ export default function CTA() {
 
           <div className="flex flex-col lg:flex-row items-end flex-grow">
 
-            {/* Person Image — hidden on small, shown md+ */}
-            <div className="hidden md:block relative w-full lg:w-1/2 self-end" style={{ height: '650px', overflow: 'visible' }}>
+            {/* Person Image — hidden on small, shown lg+ */}
+            <div className="hidden lg:block relative w-full lg:w-1/2 self-end" style={{ height: '650px', overflow: 'visible' }}>
               <img
                 src={founderImg}
                 alt="Founder"
@@ -51,8 +51,8 @@ export default function CTA() {
             </div>
 
             {/* Form */}
-            <div className="w-full lg:w-1/2 p-[20px] sm:p-[24px] lg:p-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20 pb-[32px] sm:pb-[40px] lg:pb-[56px]">
-              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[24px] sm:p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border border-white/80">
+            <div className="w-full lg:w-1/2 px-[16px] sm:px-[24px] py-[24px] sm:py-[40px] lg:py-[56px] lg:pl-[0px] flex justify-center lg:justify-start z-20">
+              <div className="w-full max-w-[546px] bg-white rounded-[24px] p-[20px] sm:p-[32px] md:p-[40px] shadow-[0_16px_48px_rgba(200,100,50,0.08)] border border-[#FF8055]/20">
                 <div className="flex flex-col gap-[12px] sm:gap-[14px]">
 
                   {/* Title */}
@@ -81,26 +81,21 @@ export default function CTA() {
                   </div>
 
                   {/* Startup Stage */}
-                  <div className="border border-[#FF8055] rounded-[10px] p-[12px] sm:p-[14px] flex flex-col gap-[8px] sm:gap-[10px]">
+                  <div className="border border-[#FF8055] rounded-[10px] p-[12px] sm:p-[14px] flex flex-col gap-[10px] sm:gap-[12px]">
                     <span className="font-body text-[15px] sm:text-[16px] text-[#000000] font-medium">Startup Stage</span>
-                    <div className="flex gap-[8px] sm:gap-[10px]">
-                      {['Stripe', 'Prototype', 'Funded'].map((s) => (
+                    <div className="flex flex-col sm:flex-row gap-[8px] sm:gap-[10px]">
+                      {['Idea', 'Prototype', 'Funded'].map((s) => (
                         <button
                           key={s}
                           onClick={() => setStage(s)}
-                          /*
-                            ─ FIX: Don't build class strings with ternaries inside template literals.
-                            ─ Instead, apply a base class and use style prop for dynamic colours.
-                          */
-                          className="flex-1 h-[34px] sm:h-[36px] rounded-[8px] border text-[14px] sm:text-[16px] font-body font-medium transition-all flex items-center justify-center gap-[6px]"
-                          style={
+                          className={`flex-1 min-h-[40px] sm:min-h-[44px] rounded-[8px] border text-[14px] sm:text-[15px] font-body font-medium transition-all flex items-center justify-center gap-[6px] ${
                             stage === s
-                              ? { borderColor: '#FA6A31', color: '#FA6A31', backgroundColor: '#FFF5F0' }
-                              : { borderColor: '#FF8055', color: '#000000', backgroundColor: '#ffffff' }
-                          }
+                              ? 'border-[#FA6A31] text-[#FA6A31] bg-[#FFF5F0]'
+                              : 'border-[#FF8055] text-[#000000] bg-white hover:border-[#FA6A31] hover:text-[#FA6A31] hover:bg-[#FFF5F0]/50'
+                          }`}
                         >
-                          {stage === s && <span className="w-[8px] h-[8px] rounded-full bg-[#FA6A31] inline-block" />}
-                          {s}
+                          {stage === s && <span className="w-[8px] h-[8px] rounded-full bg-[#FA6A31] shrink-0" />}
+                          <span className="truncate">{s}</span>
                         </button>
                       ))}
                     </div>
@@ -113,7 +108,7 @@ export default function CTA() {
                         <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
                       </svg>
                     </span>
-                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
+                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
                       <option value="" disabled>Target launch date</option>
                       <option value="1month">Within 1 month</option>
                       <option value="2months">Within 2 months</option>
@@ -132,7 +127,7 @@ export default function CTA() {
                         <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                       </svg>
                     </span>
-                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FF8055] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
+                    <select className="w-full h-[48px] sm:h-[52px] pl-[42px] pr-[16px] rounded-[10px] border border-[#FF8055] focus:outline-none focus:border-[#FA6A31] font-body text-[15px] sm:text-[16px] text-[#000000] appearance-none bg-white cursor-pointer">
                       <option value="" disabled>Budget Range</option>
                       <option value="5k">$5k – $10k</option>
                       <option value="10k">$10k – $25k</option>
@@ -145,7 +140,9 @@ export default function CTA() {
                   </div>
 
                   {/* Submit Button */}
-                  <Button variant="primary">Get Free MVP Plan</Button>
+                  <div className="mt-[8px] sm:mt-[12px] w-full flex [&>*]:w-full [&>*]:flex-1">
+                    <Button variant="primary">Get Free MVP Plan</Button>
+                  </div>
                 </div>
               </div>
             </div>

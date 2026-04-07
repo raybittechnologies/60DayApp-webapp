@@ -44,31 +44,33 @@ const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, 
       <h3 className="font-heading font-semibold text-[18px] sm:text-[20px] text-[#C03A10] mt-[16px] sm:mt-[20px] px-[8px] tracking-tight">{title}</h3>
       <p className="font-body text-[14px] sm:text-[16px] font-normal leading-[1.6] text-[#1A1A1A] mt-[8px] px-[8px] min-h-[56px] sm:min-h-[60px]">{desc}</p>
       <div className="w-full h-0 border-b-[2px] border-dotted border-[#DE8662]/30 my-[16px] sm:my-[20px]" />
-      <div className="flex items-center justify-between px-[8px] pb-[8px]">
-        <div className="flex flex-col flex-1">
-          <span className="font-heading font-semibold text-[22px] sm:text-[28px] text-[#F05A28] leading-none tracking-tight">{stat1.value}</span>
-          <span className="font-body font-normal text-[12px] sm:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.2] max-w-[60px]">{stat1.label}</span>
-        </div>
-        <div className="w-[2px] h-[36px] bg-[#DE8662]/20 mx-[6px] sm:mx-[8px] lg:mx-[16px]" />
-        <div className="flex flex-col flex-1">
-          <span className="font-heading font-semibold text-[22px] sm:text-[28px] text-[#F05A28] leading-none tracking-tight">{stat2.value}</span>
-          <span className="font-body font-normal text-[12px] sm:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.2] max-w-[60px]">{stat2.label}</span>
-        </div>
-        <div className="w-[2px] h-[36px] bg-[#DE8662]/20 mx-[6px] sm:mx-[8px] lg:mx-[16px]" />
-        <div className="flex flex-col flex-1">
-          <div className="flex items-center gap-[2px]">
-            <span className="font-heading font-semibold text-[22px] sm:text-[28px] text-[#F05A28] leading-none tracking-tight">{stat3.value}</span>
-            {stat3.icon && (
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-[#D8562B]">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-              </svg>
-            )}
+      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between px-[4px] sm:px-[8px] pb-[8px] gap-[10px] w-full">
+        <div className="flex flex-row items-center justify-between flex-1 w-full sm:w-auto min-w-[200px]">
+          <div className="flex flex-col flex-1">
+            <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat1.value}</span>
+            <span className="font-body font-normal text-[12px] sm:text-[13px] xl:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.3] opacity-80">{stat1.label}</span>
           </div>
-          <span className="font-body font-normal text-[12px] sm:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.2] max-w-[60px]">{stat3.label}</span>
+          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px]" />
+          <div className="flex flex-col flex-1">
+            <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat2.value}</span>
+            <span className="font-body font-normal text-[12px] sm:text-[13px] xl:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.3] opacity-80">{stat2.label}</span>
+          </div>
+          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px]" />
+          <div className="flex flex-col flex-1">
+            <div className="flex items-center gap-[2px]">
+              <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat3.value}</span>
+              {stat3.icon && (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#D8562B] mb-[2px]">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+              )}
+            </div>
+            <span className="font-body font-normal text-[12px] sm:text-[13px] xl:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.3] opacity-80">{stat3.label}</span>
+          </div>
         </div>
-        <div className="flex flex-col gap-[5px] sm:gap-[6px] items-end shrink-0 ml-[6px] sm:ml-[8px] xl:ml-[16px]">
+        <div className="flex flex-row sm:flex-col gap-[6px] items-center sm:items-end w-full sm:w-auto shrink-0 mt-[8px] sm:mt-0 pt-[10px] sm:pt-0 border-t sm:border-0 border-[#DE8662]/20">
           {pills.map((p, i) => (
-            <div key={i} className="bg-[#FFCAB2] text-[#C03A10] px-[8px] sm:px-[10px] py-[3px] sm:py-[4px] rounded-[4px] font-heading font-normal text-[10px] sm:text-[11px] xl:text-[12px] whitespace-nowrap border border-[#F7BFAF]/50">{p}</div>
+            <div key={i} className="bg-[#FFCAB2] text-[#C03A10] px-[10px] py-[4px] rounded-[6px] font-heading font-medium text-[11px] sm:text-[12px] whitespace-nowrap border border-[#F7BFAF]/60 shadow-sm">{p}</div>
           ))}
         </div>
       </div>
@@ -118,7 +120,7 @@ export default function CaseStudies() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px] sm:gap-[32px] w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] md:gap-[32px] w-full max-w-[600px] lg:max-w-none mx-auto">
           <CaseStudyCard {...expenseCard} />
           <CaseStudyCard {...travelCard} />
           <CaseStudyCard {...expenseCard} />

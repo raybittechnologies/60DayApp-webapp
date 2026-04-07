@@ -9,12 +9,15 @@ export default function EyebrowPill({ variant = 'nav', children }) {
       <div
         className="
           inline-flex items-center justify-center gap-[10px]
+          min-w-[174px]
           px-[14px] py-[6px]
-          min-h-[36px] sm:min-h-[40px]
+          min-h-[40px] sm:min-h-[40px]
           rounded-[48px]
-          border border-brand-orange/40
-          bg-brand-orange/10
+          border border-[#FF8055]
+          bg-[#FF80551A]
           text-brand-orange
+          text-[20px]
+          text-[600]
         "
         style={{ width: 'max-content' }}
       >
@@ -35,7 +38,7 @@ export default function EyebrowPill({ variant = 'nav', children }) {
       rounded-full
       bg-brand-orange/10
       backdrop-blur-xl
-      border border-brand-orange/20
+      border border-[#FFCAB2]
       transition-all duration-300
       hover:bg-brand-orange/15
       hover:border-brand-orange/40
