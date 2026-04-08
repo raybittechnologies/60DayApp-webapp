@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EyebrowPill from '../../components/ui/EyebrowPill';
+import EyebrowPill from '../ui/EyebrowPill';
 
 
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import EyebrowPill from '../../components/ui/EyebrowPill';
-import Button from '../../components/ui/Button';
+import EyebrowPill from '../ui/EyebrowPill';
+import Button from '../ui/Button';
 
 /* ── Gradient styles matching the screenshot ── */
 const gradientCard = {

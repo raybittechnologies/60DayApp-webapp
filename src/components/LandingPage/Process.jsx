@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import EyebrowPill from '../../components/ui/EyebrowPill';
+import EyebrowPill from '../ui/EyebrowPill';
 
 import blueprintImg from '../../assets/svgs/blueprint.svg';
 import buildImg from '../../assets/svgs/build.svg';

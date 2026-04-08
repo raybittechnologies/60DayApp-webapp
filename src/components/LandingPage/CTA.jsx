@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import founderImg from '../../assets/images/person_image.png';
-import Button from '../../components/ui/Button';
+import Button from '../ui/Button';
 
 export default function CTA() {
   const [stage, setStage] = useState('Idea');
@@ -88,11 +88,10 @@ export default function CTA() {
                         <button
                           key={s}
                           onClick={() => setStage(s)}
-                          className={`flex-1 min-h-[40px] sm:min-h-[44px] rounded-[8px] border text-[14px] sm:text-[15px] font-body font-medium transition-all flex items-center justify-center gap-[6px] ${
-                            stage === s
+                          className={`flex-1 min-h-[40px] sm:min-h-[44px] rounded-[8px] border text-[14px] sm:text-[15px] font-body font-medium transition-all flex items-center justify-center gap-[6px] ${stage === s
                               ? 'border-[#FA6A31] text-[#FA6A31] bg-[#FFF5F0]'
                               : 'border-[#FF8055] text-[#000000] bg-white hover:border-[#FA6A31] hover:text-[#FA6A31] hover:bg-[#FFF5F0]/50'
-                          }`}
+                            }`}
                         >
                           {stage === s && <span className="w-[8px] h-[8px] rounded-full bg-[#FA6A31] shrink-0" />}
                           <span className="truncate">{s}</span>

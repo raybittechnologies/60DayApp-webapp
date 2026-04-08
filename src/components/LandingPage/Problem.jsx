@@ -1,5 +1,5 @@
 import React from 'react';
-import EyebrowPill from '../../components/ui/EyebrowPill';
+import EyebrowPill from '../ui/EyebrowPill';
 import starImage from '../../assets/images/Star.png';
 
 

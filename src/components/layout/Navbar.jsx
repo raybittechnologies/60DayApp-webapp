@@ -1,18 +1,18 @@
-
-
 import React, { useState, useEffect } from 'react';
 import EyebrowPill from '../ui/EyebrowPill';
 import Button from '../ui/Button';
+import { Link } from 'react-router-dom';
 
 const NAV_LINKS = [
-  { href: '#how',   label: 'How It Works' },
-  { href: '#cases', label: 'Case Studies' },
-  { href: '#about', label: 'About Us' },
+  { href: '/#how', label: 'How It Works', isRouter: false },
+  { href: '/case-study/expense-tracker', label: 'Case Studies', isRouter: true },
+  { href: '/#about', label: 'About Us', isRouter: false },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -22,28 +22,24 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── NAV BAR ──
-          Outer nav: absolute, full width, same responsive padding as section-outer.
-          Inner div: max-w-[1280px] + mx-auto = same as section-inner.
 
-          Why not use section-outer/section-inner directly:
-          section-outer switches to `display:flex` at 1360px+ for centering,
-          but absolute-positioned elements ignore flex flow from their parent,
-          so we replicate the padding + max-width manually here instead.
-      -->
-      */}
       <nav className="
-        absolute top-4 sm:top-6 left-0 right-0 z-[100]
+        fixed top-0 left-0 right-0 z-[100]
         w-full
+        
+        py-[12px]
         px-[16px] sm:px-[40px] 
+        bg-[#FFF5F2]/100 backdrop-blur-md
+       
+     
       ">
-        <div className="w-full max-w-[1280px] mx-auto h-[60px] sm:h-[71px] flex items-center justify-between">
+        <div className="w-full max-w-[1280px] mx-auto h-[70px] sm:h-[85px] flex items-center justify-between">
 
           {/* Logo */}
-          <div className="font-heading text-2xl sm:text-3xl font-semibold tracking-tighter flex items-center shrink-0">
+          <Link to="/" className="font-heading text-2xl sm:text-3xl font-semibold tracking-tighter flex items-center shrink-0">
             <span className="text-text-primary">60Day</span>
             <span className="text-brand-orange">App</span>
-          </div>
+          </Link>
 
           {/* Centre pill — tablet + desktop */}
           <div className="hidden md:flex items-center">
@@ -55,9 +51,7 @@ export default function Navbar() {
             <Button variant="primary">Book Free Call</Button>
           </div>
 
-          {/* Hamburger / X — mobile only
-              FIX: dynamic classes moved to inline style to avoid Tailwind v4 scan warnings.
-          */}
+          {/* Hamburger Menu Icon — mobile only */}
           <button
             className="sm:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
             onClick={() => setMenuOpen(o => !o)}
@@ -79,18 +73,14 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ── MOBILE MENU BACKDROP ──
-          FIX: dynamic opacity/pointer-events moved to style prop.
-      */}
+      {/* ── MOBILE MENU BACKDROP ── */}
       <div
         className="sm:hidden fixed inset-0 z-[110] bg-black/30 backdrop-blur-[2px] transition-opacity duration-300"
         style={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none' }}
         onClick={close}
       />
 
-      {/* ── MOBILE SLIDE-DOWN PANEL ──
-          FIX: dynamic translate moved to style prop.
-      */}
+      {/* ── MOBILE SLIDE-DOWN PANEL ── */}
       <div
         className="sm:hidden fixed top-0 left-0 right-0 z-[120] bg-[#FFF3EE] rounded-b-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-in-out"
         style={{ transform: menuOpen ? 'translateY(0)' : 'translateY(-100%)' }}
@@ -114,16 +104,18 @@ export default function Navbar() {
         <div className="h-px bg-border-default mx-5" />
 
         <div className="flex flex-col px-5 py-3">
-          {NAV_LINKS.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={close}
-              className="font-body text-[17px] font-medium text-text-primary py-4 border-b border-border-default last:border-0 hover:text-brand-orange transition-colors duration-200"
-            >
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map(({ href, label, isRouter }) => {
+            const classes = "font-body text-[17px] font-medium text-text-primary py-4 border-b border-border-default last:border-0 hover:text-brand-orange transition-colors duration-200";
+            return isRouter ? (
+              <Link key={href} to={href} onClick={close} className={classes}>
+                {label}
+              </Link>
+            ) : (
+              <a key={href} href={href} onClick={close} className={classes}>
+                {label}
+              </a>
+            );
+          })}
         </div>
 
         <div className="px-5 pb-7 pt-2">
