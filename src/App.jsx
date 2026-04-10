@@ -34,9 +34,9 @@ function AnimatedRoutes() {
           path="/" 
           element={
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.7 }}
             >
               <Home />
@@ -47,9 +47,9 @@ function AnimatedRoutes() {
           path="/case-study/:id" 
           element={
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.7 }}
             >
               <CaseStudyDetail />
@@ -60,9 +60,9 @@ function AnimatedRoutes() {
           path="/about-us" 
           element={
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.7 }}
             >
               <AboutUs />

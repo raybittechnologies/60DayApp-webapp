@@ -109,7 +109,7 @@ export const SolutionsTab = () => {
             // Adjusted scales/dx to give massive focus structure
             const dxAmount = isMobile ? 0 : 340;
             const finalDx = isCenter ? 0 : (pos === 'left' ? -dxAmount : dxAmount);
-            
+
             // Massively increase center
             const scale = isCenter ? (isMobile ? 1.2 : 1.5) : (isMobile ? 1.4 : 0.8);
             const zIndex = isCenter ? 50 : 10;

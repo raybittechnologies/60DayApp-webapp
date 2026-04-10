@@ -32,36 +32,42 @@ export default function SidebarMenu({ activeTab, setActiveTab }) {
       </div>
 
       {/* ── Desktop: vertical sticky sidebar ── */}
-      <div className="hidden lg:flex flex-col sticky top-[100px] gap-[32px] lg:self-start">
-        <div className="w-full relative rounded-[24px] bg-[#FFF5F2] shadow-[0_0_0_1px_#FFCAB2] p-[32px]">
-          <h3 className="font-heading font-bold text-[24px] text-[#F05A28] mb-[24px] tracking-tight">Table Of Content</h3>
+      <div className="hidden lg:block relative w-full h-full">
+        <div
+          className="flex flex-col sticky top-[100px] gap-[24px] pb-4"
+        >
+          <div className="w-full relative rounded-[24px] bg-[#FFF5F2] border-[1px] border-[#FFCAB2] shadow-sm p-[24px] transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 className="font-heading font-bold text-[20px] text-[#F05A28] mb-[20px] tracking-tight">Table Of Content</h3>
 
-          {/* Background Track on right edge */}
-          <div className="absolute right-0 top-[88px] bottom-[32px] w-[4px] bg-[#FFCAB2] bg-opacity-40 rounded-l-md" />
+            {/* Background Track on right edge */}
+            <div className="absolute right-0 top-[64px] bottom-[24px] w-[4px] bg-[#FFCAB2] bg-opacity-40 rounded-l-md" />
 
-          <ul className="flex flex-col gap-[20px] relative">
-            {TABS.map((item, idx) => (
-              <li key={idx} className="relative">
-                {activeTab === item && (
-                  <div className="absolute right-[-32px] top-1/2 -translate-y-1/2 h-[32px] w-[4px] bg-[#F05A28] rounded-l-md" />
-                )}
-                <button
-                  onClick={() => setActiveTab(item)}
-                  className={`font-body font-semibold text-[16px] tracking-tight transition-colors text-left ${activeTab === item ? 'text-[#F05A28]' : 'text-[#1A1A1A] hover:text-[#F05A28]'
-                    }`}
-                >
-                  {item}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="relative max-h-[150px] overflow-y-auto no-scrollbar" style={{ marginRight: '-24px', paddingRight: '24px' }}>
+              <ul className="flex flex-col gap-[16px] relative pr-2 pb-2">
+                {TABS.map((item, idx) => (
+                  <li key={idx} className="relative">
+                    {activeTab === item && (
+                      <div className="absolute right-[-26px] top-1/2 -translate-y-1/2 h-[28px] w-[4px] bg-[#F05A28] rounded-l-md" />
+                    )}
+                    <button
+                      onClick={() => setActiveTab(item)}
+                      className={`font-body font-semibold text-[15px] tracking-tight transition-colors text-left ${activeTab === item ? 'text-[#F05A28]' : 'text-[#1A1A1A] hover:text-[#F05A28]'
+                        }`}
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-        <div className="w-full rounded-[24px] bg-[#FFF5F2] border-[1px] border-[#FFCAB2] shadow-sm p-[32px] pb-[8px] text-left flex flex-col overflow-hidden">
-          <h3 className="font-heading font-extrabold text-[24px] text-[#F05A28] leading-[1.2]">Have a Project in<br />Mind ?</h3>
-          <p className="font-body text-[14px] font-normal text-[#1A1A1A] mt-[16px] mb-[16px] leading-[1.5]">Contact us today and our team will reach out to you .....</p>
-          <div className="w-[200px] h-auto mx-auto mt-auto flex items-end justify-center translate-y-3">
-            <img src={Phone1} className="w-full h-auto object-contain object-bottom drop-shadow-xl" alt="Contact Us Mockups" />
+          <div className="w-full rounded-[24px] bg-[#FFF5F2] border-[1px] border-[#FFCAB2] shadow-sm p-[24px] pb-[8px] text-left flex flex-col overflow-hidden shrink-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 className="font-heading font-extrabold text-[20px] text-[#F05A28] leading-[1.2]">Have a Project in<br />Mind ?</h3>
+            <p className="font-body text-[13px] font-normal text-[#1A1A1A] mt-[12px] mb-[12px] leading-[1.5]">Contact us today and our team will reach out to you .....</p>
+            <div className="w-[160px] h-auto mx-auto mt-auto flex items-end justify-center translate-y-3">
+              <img src={Phone1} className="w-full h-auto object-contain object-bottom drop-shadow-xl" alt="Contact Us Mockups" />
+            </div>
           </div>
         </div>
       </div>
