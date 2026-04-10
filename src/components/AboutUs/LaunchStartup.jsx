@@ -6,7 +6,7 @@ import Button from '../ui/Button';
 
 const LaunchStartup = () => {
   return (
-    <div className="section-outer py-8 sm:py-10 bg-peach">
+    <div className="section-outer py-8 sm:py-10 bg-[#FFF5F2]">
       <div className="section-inner">
         <div
           className="relative overflow-hidden flex flex-col items-center justify-center text-center"

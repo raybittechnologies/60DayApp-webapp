@@ -1,6 +1,8 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer, staggerScale, viewport } from '../../utils/motionVariants';
 import EyebrowPill from '../ui/EyebrowPill';
 
 import blueprintImg from '../../assets/svgs/blueprint.svg';
@@ -14,25 +16,34 @@ const GreenTick = () => (
   </svg>
 );
 
-const ProcessCard = ({ title, desc, items, iconImg }) => (
-  <div
-    className="relative mx-auto rounded-[32px] overflow-hidden flex flex-col cursor-default"
+const ProcessCard = ({ title, desc, items, iconImg, active }) => (
+  <motion.div
+    className="relative mx-auto w-full max-w-[263px] rounded-[32px] overflow-hidden flex flex-col cursor-default"
+    animate={
+      active
+        ? {
+          y: -10,
+          scale: 1.02
+        }
+        : {
+          y: 0,
+          scale: 1.0
+        }
+    }
+    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     style={{
-      width: '263px',
       minHeight: '350px',
-      background: 'rgba(255, 128, 85, 0.1)',
+      backgroundColor: '#FF80551A',
       boxShadow: '0 0 0 1px rgba(240, 90, 40, 0.05), 0 4px 12px rgba(240, 90, 40, 0.08)'
     }}
   >
-    {/* Orange Header Container with explicitly hardened bottom-left radius style to guarantee visual match */}
     <div
       className="relative w-full h-[96px] bg-[#FF8055] shrink-0"
       style={{ borderBottomLeftRadius: '32px' }}
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center z-30 shadow-md p-2.5">
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center z-30 p-2.5 transition-all duration-500 shadow-md ${active ? 'scale-110' : 'scale-100'}`}>
         <img src={iconImg} alt={`${title} icon`} className="w-full h-full object-contain" />
       </div>
-      {/* Inverted Scoop with micro-overlap (1px) to prevent sub-pixel hairline scaling gaps */}
       <div className="absolute right-[-1px] bottom-[-49px] w-[50px] h-[50px] z-20">
         <svg viewBox="0 0 48 48" className="w-full h-full fill-[#FF8055]" preserveAspectRatio="none">
           <path d="M0 0 Q 48 0 48 48 L 48 0 Z" />
@@ -40,7 +51,6 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
       </div>
     </div>
 
-    {/* Body Content */}
     <div className="flex flex-col flex-grow px-[16px] pb-[20px] pt-[20px]">
       <h3 className="font-heading font-bold text-[30px] text-center text-[#1A1A1A] leading-tight tracking-tight">
         {title}
@@ -73,7 +83,7 @@ const ProcessCard = ({ title, desc, items, iconImg }) => (
         </ul>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 
@@ -126,7 +136,7 @@ const TimelineColumn = ({ number, active, isFirst, isLast, cardData, idx, active
       />
 
       <div className="w-full flex-grow flex">
-        <ProcessCard {...cardData} />
+        <ProcessCard {...cardData} active={active} />
       </div>
     </div>
   );
@@ -138,7 +148,7 @@ export default function Process() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % 4);
-    }, 3000);
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
@@ -185,7 +195,13 @@ export default function Process() {
     <section id="how" className="section-outer relative overflow-hidden">
       <div className="section-inner flex flex-col items-center">
 
-        <div className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[56px] lg:mb-[64px]">
+        <motion.div
+          className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[56px] lg:mb-[64px]"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <EyebrowPill variant="label">How it Works</EyebrowPill>
           <h2 className="font-heading font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
             Our <span className="text-[#F05A28]">60-Day</span> Launch <br /> Framework
@@ -193,22 +209,30 @@ export default function Process() {
           <p className="font-body text-[16px] sm:text-[18px] leading-[1.6] font-extrabold text-[#222222] text-center mt-[24px]">
             A battle tested 4-phase process. From <span className="text-[#F05A28]">concept to App Store</span> in exactly 60 days — no exceptions
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] lg:gap-[42px] w-full items-stretch">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] lg:gap-[42px] w-full items-stretch"
+          variants={staggerContainer(0.15)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {steps.map((step, idx) => (
-            <TimelineColumn
-              key={step.number}
-              number={step.number}
-              active={idx === activeStep}
-              isFirst={idx === 0}
-              isLast={idx === steps.length - 1}
-              cardData={step.cardData}
-              idx={idx}
-              activeStep={activeStep}
-            />
+            <motion.div key={step.number} variants={staggerScale}>
+              <TimelineColumn
+                key={step.number}
+                number={step.number}
+                active={idx === activeStep}
+                isFirst={idx === 0}
+                isLast={idx === steps.length - 1}
+                cardData={step.cardData}
+                idx={idx}
+                activeStep={activeStep}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

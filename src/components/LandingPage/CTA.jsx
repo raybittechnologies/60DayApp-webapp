@@ -1,6 +1,8 @@
 
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, scaleUp, viewport } from '../../utils/motionVariants';
 import founderImg from '../../assets/images/person_image.png';
 import Button from '../ui/Button';
 
@@ -8,15 +10,18 @@ export default function CTA() {
   const [stage, setStage] = useState('Idea');
 
   return (
-    /*
-      ─ Use section-outer / section-inner for consistent 1440/1280 layout.
-      ─ The white wrapper card goes INSIDE section-inner, not around it.
-    */
+    
     <section className="section-outer relative pt-[10px] pb-[40px] sm:pb-[60px]">
       <div className="section-inner flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[32px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
 
         {/* Top CTA Block */}
-        <div className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[48px] sm:py-[64px] px-[20px] sm:px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]">
+        <motion.div
+          className="w-full bg-gradient-to-b from-[#FFF6F2] to-[#F1E4DE] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.04)] rounded-[24px] py-[48px] sm:py-[64px] px-[20px] sm:px-[24px] flex flex-col items-center text-center transition-shadow hover:shadow-[0_12px_48px_rgba(200,100,50,0.08)]"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <h2 className="font-heading font-extrabold text-[28px] sm:text-[36px] md:text-[44px] text-[#1A1A1A] leading-[1.15] tracking-tight max-w-[753px]">
             Ready to Launch Your <span className="text-[#F05A28]">Startup?</span>
           </h2>
@@ -25,17 +30,22 @@ export default function CTA() {
             <Button variant="ghost">Get MVP Estimate</Button>
             <Button variant="primary" showArrow={true}>Start Your MVP</Button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom CTA Block */}
-        <div className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[40px] sm:pt-[56px] relative">
+        <motion.div
+          className="w-full bg-gradient-to-tl from-[#F1E1DA] to-[#FCF4EF] border border-[#FF8055] shadow-[0_8px_32px_rgba(200,100,50,0.06)] rounded-[24px] overflow-hidden flex flex-col pt-[40px] sm:pt-[56px] relative"
+          variants={scaleUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <h2 className="font-heading font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] text-[#C03A10] text-center z-20 px-[20px] sm:px-[24px] leading-none tracking-tight">Let's get you started!</h2>
 
           <div className="flex flex-col lg:flex-row items-end flex-grow">
 
-            {/* Person Image — hidden on small, shown lg+ */}
             <div className="hidden lg:block relative w-full lg:w-1/2 self-end" style={{ height: '650px', overflow: 'visible' }}>
-              <img
+              <motion.img
                 src={founderImg}
                 alt="Founder"
                 className="scale-x-[-1]"
@@ -47,6 +57,8 @@ export default function CTA() {
                   objectFit: 'cover',
                   filter: 'drop-shadow(-8px 8px 24px rgba(240,90,40,0.45))'
                 }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
 
@@ -146,7 +158,7 @@ export default function CTA() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

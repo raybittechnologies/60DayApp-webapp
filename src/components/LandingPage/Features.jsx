@@ -1,9 +1,10 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer, staggerScale, scaleUp, viewport } from '../../utils/motionVariants';
 import EyebrowPill from '../ui/EyebrowPill';
 import Button from '../ui/Button';
 
-/* ── Gradient styles matching the screenshot ── */
 const gradientCard = {
   background: 'rgba(255, 128, 85, 0.1)',
   border: '1px solid #FF8055',
@@ -34,29 +35,20 @@ const Tag = ({ text }) => (
   </span>
 );
 
-/* ── Individual feature card ── */
-const FeatureCard = ({ n, label, title, desc, tags = [], icon, extra }) => (
-  <div className="rounded-[18px] p-5 sm:p-6 flex flex-col gap-6 h-full" style={gradientCard}>
-    {/* Top row: icon + feature number */}
+const FeatureCard = ({ n, label, title, desc, tags = [], icon }) => (
+  <div className="rounded-[18px] p-5 sm:p-6 flex flex-col gap-6 h-full transition-transform duration-300 hover:-translate-y-1" style={gradientCard}>
     <div className="flex items-center gap-8">
       <IconBadge>{icon}</IconBadge>
       <span className="text-[28px] sm:text-[26px] font-[600] text-[#1A1A1A] leading-none">Feature {n}</span>
     </div>
-    {/* Label pill */}
-    <div>
-      <FeatureLabel text={label} />
-    </div>
-    {/* Title */}
+    <div><FeatureLabel text={label} /></div>
     <h3 className="text-[28px] sm:text-[28px] font-[600] text-[#1A1A1A] leading-snug">{title}</h3>
-    {/* Description */}
     <p className="text-[18px] sm:text-[18px] text-[#000000] font-[400] leading-relaxed flex-1 font-body">{desc}</p>
-    {/* Tags */}
     {tags.length > 0 && (
       <div className="flex flex-wrap gap-2.5">
         {tags.map(t => <Tag key={t} text={t} />)}
       </div>
     )}
-
   </div>
 );
 
@@ -71,43 +63,12 @@ const ICONS = {
 };
 
 const FEATURES = [
-  {
-    n: '01', label: 'Core deliverable', icon: ICONS.phone,
-    title: 'Mobile App Development',
-    desc: 'Cross-platform iOS and Android app built simultaneously. One codebase, both stores, full native performance.',
-    tags: ['iOS App Store', 'Google Play Store', 'Cross-platform'],
-
-  },
-  {
-    n: '02', label: 'Infrastructure', icon: ICONS.server,
-    title: 'Backend Infrastructure',
-    desc: 'Secure, scalable backend built for growth. APIs, database, auth and cloud hosting — all production-ready.',
-    tags: ['REST / GraphQL APIs', 'Auth + security', 'Cloud deployment'],
-  },
-  {
-    n: '03', label: 'Management', icon: ICONS.grid,
-    title: 'Admin Dashboard',
-    desc: 'Manage users, data and content from a clean web dashboard. No dev needed to run your product.',
-    tags: ['User management', 'Content control', 'Analytics'],
-  },
-  {
-    n: '04', label: 'Revenue Ready', icon: ICONS.dollar,
-    title: 'Payment Integration',
-    desc: 'Stripe and in-app purchase systems. Start charging users from day one — subscriptions, one-time, and more.',
-    tags: ['Paypal', 'Stripe', ' Google Pay Store '],
-  },
-  {
-    n: '05', label: 'Engagement', icon: ICONS.bell,
-    title: 'Push Notifications',
-    desc: 'Re-engage users with targeted push notifications. Built-in for both iOS and Android from launch day.',
-    tags: ['REST / APIs', 'Auth + security', 'Cloud deployment'],
-  },
-  {
-    n: '06', label: 'Go Live', icon: ICONS.check,
-    title: 'App Store Deployment',
-    desc: 'Full App Store and Google Play submission — screenshots, metadata, review process handled by us. You just approve and go live.',
-    tags: ['App Store', 'Google Play'],
-  },
+  { n: '01', label: 'Core deliverable', icon: ICONS.phone, title: 'Mobile App Development', desc: 'Cross-platform iOS and Android app built simultaneously. One codebase, both stores, full native performance.', tags: ['iOS App Store', 'Google Play Store', 'Cross-platform'] },
+  { n: '02', label: 'Infrastructure', icon: ICONS.server, title: 'Backend Infrastructure', desc: 'Secure, scalable backend built for growth. APIs, database, auth and cloud hosting — all production-ready.', tags: ['REST / GraphQL APIs', 'Auth + security', 'Cloud deployment'] },
+  { n: '03', label: 'Management', icon: ICONS.grid, title: 'Admin Dashboard', desc: 'Manage users, data and content from a clean web dashboard. No dev needed to run your product.', tags: ['User management', 'Content control', 'Analytics'] },
+  { n: '04', label: 'Revenue Ready', icon: ICONS.dollar, title: 'Payment Integration', desc: 'Stripe and in-app purchase systems. Start charging users from day one — subscriptions, one-time, and more.', tags: ['Paypal', 'Stripe', ' Google Pay Store '] },
+  { n: '05', label: 'Engagement', icon: ICONS.bell, title: 'Push Notifications', desc: 'Re-engage users with targeted push notifications. Built-in for both iOS and Android from launch day.', tags: ['REST / APIs', 'Auth + security', 'Cloud deployment'] },
+  { n: '06', label: 'Go Live', icon: ICONS.check, title: 'App Store Deployment', desc: 'Full App Store and Google Play submission — screenshots, metadata, review process handled by us. You just approve and go live.', tags: ['App Store', 'Google Play'] },
 ];
 
 export default function Features() {
@@ -116,7 +77,13 @@ export default function Features() {
       <div className="section-inner flex flex-col items-center">
 
         {/* ── Header ── */}
-        <div className="flex flex-col items-center max-w-[700px] mb-[40px] sm:mb-[60px] text-center">
+        <motion.div
+          className="flex flex-col items-center max-w-[700px] mb-[40px] sm:mb-[60px] text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <EyebrowPill variant="label">What You Get</EyebrowPill>
           <h2 className="font-heading font-extrabold text-[32px] sm:text-[40px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-1.5px] text-[#1A1A1A] mt-[20px]">
             Everything You Need <br />to{' '}
@@ -127,32 +94,46 @@ export default function Features() {
             <span className="text-[#FA8B61]">commit to App Store</span>{' '}
             approval. Nothing missing, nothing extra.
           </p>
-        </div>
+        </motion.div>
 
-        {/* ── 3×2 Bento Grid — all breakpoints ── */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {/* ── 3×2 Bento Grid ── */}
+        <motion.div
+          className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {FEATURES.map(f => (
-            <FeatureCard key={f.n} {...f} />
+            <motion.div key={f.n} variants={staggerScale}>
+              <FeatureCard {...f} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* ── "Your App is Live!" banner ── */}
-        <div
+        <motion.div
           className="w-full rounded-[18px] mt-5 py-6 px-8 flex items-center justify-center"
-
+          variants={scaleUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
         >
           <p className="text-[32px] sm:text-[40px] md:text-[64px] font-[800] text-[#C03A10] text-center leading-none">
             Your App is Live!
           </p>
-        </div>
+        </motion.div>
 
-        {/* ── Bottom Banner ── */}
-        <div
+        
+        <motion.div
           className="w-full rounded-[24px] p-[24px] sm:p-[32px] md:p-[40px] flex flex-col items-center mt-[20px]"
           style={{
             background: 'linear-gradient(180deg, rgba(240,90,40,0.06) 0%, rgba(240,90,40,0.05) 60%, rgba(240,90,40,0.22) 100%)',
             border: '1.5px solid #FF8055',
           }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
         >
           <div className="text-center mb-[20px] sm:mb-[24px]">
             <h3 className="font-heading font-extrabold text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] text-[#1A1A1A] leading-[1.1] tracking-[-1px]">
@@ -181,7 +162,7 @@ export default function Features() {
               Book Free Call
             </Button>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

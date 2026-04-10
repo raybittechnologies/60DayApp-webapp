@@ -7,17 +7,12 @@ import ProjectIcon from '../../assets/images/project-outlined.png';
 
 const Footer = () => {
   return (
-    /*
-      ─ Use section-outer / section-inner for consistent 1440/1280 layout.
-      ─ Remove hardcoded px-[16px] sm:px-[40px] md:px-[80px] — section-outer handles this.
-      ─ The bg-[#FF80551A] card goes INSIDE section-inner as a child, not wrapping it.
-    */
+
     <footer className="section-outer pb-[40px] sm:pb-[64px]">
       <div className="section-inner">
         <div className="w-full bg-[#FF80551A] rounded-[24px] p-[24px] sm:p-[48px] lg:p-[64px] flex flex-col overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1fr] gap-[32px] sm:gap-[48px] lg:gap-[32px]">
 
-            {/* Column 1: Logo & Mission */}
             <div className="flex flex-col max-w-full sm:max-w-[294px] shrink-0">
               <div className="font-heading font-extrabold text-[32px] sm:text-[40px] tracking-tight text-[#1A1A1A] leading-none">
                 60Day<span className="text-[#FA6A31]">App</span>
@@ -41,7 +36,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Column 2: Company */}
+
             <div className="flex flex-col lg:mt-[12px]">
               <h4 className="font-heading font-semibold text-[#1A1A1A] text-[18px] sm:text-[20px] mb-[20px] sm:mb-[24px]">Company</h4>
               <ul className="flex flex-col gap-[14px] sm:gap-[16px]">
@@ -54,7 +49,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 3: Our Services */}
+
             <div className="flex flex-col lg:mt-[12px]">
               <h4 className="font-heading font-semibold text-[#1A1A1A] text-[18px] sm:text-[20px] mb-[20px] sm:mb-[24px]">Our Services</h4>
               <ul className="flex flex-col gap-[14px] sm:gap-[16px]">
@@ -67,7 +62,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 4: Get in Touch */}
+
             <div className="flex flex-col lg:mt-[12px]">
               <h4 className="font-heading font-semibold text-[#1A1A1A] text-[18px] sm:text-[20px] mb-[20px] sm:mb-[24px]">Get in Touch</h4>
               <ul className="flex flex-col gap-[14px] sm:gap-[16px]">
@@ -90,7 +85,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Divider */}
+
           <div className="w-full border-t-2 border-[#FFCAB2] my-[32px] sm:my-[48px] shrink-0" />
 
           {/* Lower Section */}

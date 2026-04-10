@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MentalImageImg from '../../assets/images/MentalImage.png';
-import PhonesImg from '../../assets/images/3_Phones.png';
+import Phone1 from '../../assets/images/phone1.png';
+import Phone2 from '../../assets/images/phone2.png';
 
 export const BlockListElement = ({ num, title, desc }) => (
   <div className="flex gap-[16px]">
@@ -63,28 +64,105 @@ export const ChallengesTab = () => (
   </div>
 );
 
-export const SolutionsTab = () => (
-  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-    <div className="w-full rounded-[32px] bg-[#FFF5F2] border border-[#FFCAB2] shadow-sm pt-[48px] pb-[16px] px-[24px] flex flex-col items-center mb-[40px] overflow-hidden">
-      <h2 className="font-heading font-extrabold text-[36px] sm:text-[40px] text-[#F05A28] tracking-tight mb-[24px] text-center">Desired Solutions</h2>
-      <div className="w-full flex justify-center mt-auto opacity-90 h-[220px] sm:h-[280px]">
-        <img src={PhonesImg} alt="Solutions mockups" className="w-full h-full object-contain object-bottom drop-shadow-xl" />
+export const SolutionsTab = () => {
+  const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const TOTAL = 6;
+  const ASSET_W = 398;
+  const ASSET_H = 298.5;
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive(a => (a + 1) % TOTAL), 3000);
+    return () => clearInterval(t);
+  }, []);
+
+  const getAsset = (index) => (index % 2 === 0 ? Phone1 : Phone2);
+
+  const slots = [
+    { key: (active - 1 + TOTAL) % TOTAL, pos: 'left' },
+    { key: active, pos: 'center' },
+    { key: (active + 1) % TOTAL, pos: 'right' },
+  ];
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="w-full rounded-[32px] bg-[#FFF5F2] border border-[#FFCAB2] shadow-sm pt-[48px] flex flex-col items-center mb-[40px] overflow-hidden">
+        <h2 className="font-heading font-extrabold text-[36px] sm:text-[40px] text-[#F05A28] tracking-tight mb-[24px] text-center px-4">Desired Solutions</h2>
+
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: '1280px',
+          height: isMobile ? '300px' : '480px',
+          overflow: 'hidden',
+          marginTop: isMobile ? '10px' : '0px'
+        }}>
+          {slots.map(({ key, pos }) => {
+            const isCenter = pos === 'center';
+            // Adjusted scales/dx to give massive focus structure
+            const dxAmount = isMobile ? 0 : 340;
+            const finalDx = isCenter ? 0 : (pos === 'left' ? -dxAmount : dxAmount);
+            
+            // Massively increase center
+            const scale = isCenter ? (isMobile ? 1.2 : 1.5) : (isMobile ? 1.4 : 0.8);
+            const zIndex = isCenter ? 50 : 10;
+            const isHiddenMobile = isMobile && !isCenter;
+
+            return (
+              <div
+                key={key}
+                style={{
+                  position: 'absolute',
+                  bottom: isMobile ? '10px' : '20px',
+                  left: '50%',
+                  width: `${isMobile ? 280 : ASSET_W}px`,
+                  height: `${isMobile ? 280 : ASSET_H}px`,
+                  zIndex: zIndex,
+                  transition: 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s',
+                  willChange: 'transform',
+                  transform: `translateX(calc(-50% + ${finalDx}px)) scale(${scale})`,
+                  transformOrigin: 'bottom center',
+                  opacity: isHiddenMobile ? 0 : 1,
+                  pointerEvents: isHiddenMobile ? 'none' : 'auto',
+                }}
+              >
+                <img
+                  src={getAsset(key)}
+                  alt="Solutions mockup"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'bottom'
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
+
+      <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A]">
+        We designed and developed a <span className="text-[#FF8055]">mobile-first expense tracking solution</span> from the ground up, focusing on speed, clarity, and usability.
+      </p>
+
+      <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A] mt-[24px]">
+        The app was built with a <span className="text-[#FF8055]">streamlined user flow</span>, allowing users to quickly add expenses, categorize them, and instantly view summaries. A clean and modern UI was crafted to ensure ease of use and reduce cognitive load.
+      </p>
+
+      <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A] mt-[24px]">
+        The system integrates <span className="text-[#FF8055]">real-time data visualization</span>, budget tracking, and categorized expense management, enabling users to monitor their financial behavior effectively.
+      </p>
     </div>
-
-    <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A]">
-      We designed and developed a <span className="text-[#FF8055]">mobile-first expense tracking solution</span> from the ground up, focusing on speed, clarity, and usability.
-    </p>
-
-    <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A] mt-[24px]">
-      The app was built with a <span className="text-[#FF8055]">streamlined user flow</span>, allowing users to quickly add expenses, categorize them, and instantly view summaries. A clean and modern UI was crafted to ensure ease of use and reduce cognitive load.
-    </p>
-
-    <p className="font-body text-[16px] leading-[1.8] text-[#1A1A1A] mt-[24px]">
-      The system integrates <span className="text-[#FF8055]">real-time data visualization</span>, budget tracking, and categorized expense management, enabling users to monitor their financial behavior effectively.
-    </p>
-  </div>
-);
+  );
+};
 
 export const SpecialFeaturesTab = () => (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">

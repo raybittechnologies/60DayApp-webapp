@@ -1,6 +1,6 @@
 
-
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Button = ({
   children,
@@ -20,7 +20,6 @@ const Button = ({
     border border-solid
     cursor-pointer
     transition-all duration-300
-    active:scale-95
   `;
 
   const variants = {
@@ -47,7 +46,9 @@ const Button = ({
   };
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
       className={`${base} ${variants[variant] ?? variants.primary} ${className}`}
       {...props}
     >
@@ -68,8 +69,8 @@ const Button = ({
           <polyline points="12 5 19 12 12 19" />
         </svg>
       )}
-    </button>
+    </motion.button>
   );
 };
 
-export default Button;
+export default Button;

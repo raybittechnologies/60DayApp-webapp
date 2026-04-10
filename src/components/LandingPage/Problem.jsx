@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, scaleUp, staggerContainer, staggerItem, staggerScale, viewport } from '../../utils/motionVariants';
 import EyebrowPill from '../ui/EyebrowPill';
 import starImage from '../../assets/images/Star.png';
 
@@ -21,7 +23,6 @@ const GlassNumber = ({ value, fontSize = 100 }) => (
   </div>
 );
 
-/* ── Mobile/tablet card — content height drives the SVG notch shape ── */
 const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
   const containerRef = React.useRef(null);
   const [size, setSize] = React.useState({ w: 400, h: 220 });
@@ -29,10 +30,7 @@ const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
   React.useEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
-      setSize({
-        w: entry.contentRect.width,
-        h: entry.contentRect.height
-      });
+      setSize({ w: entry.contentRect.width, h: entry.contentRect.height });
     });
     ro.observe(containerRef.current);
     return () => ro.disconnect();
@@ -40,9 +38,6 @@ const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
 
   const W = Math.max(size.w, 100);
   const H = Math.max(size.h, 100);
-
-  // FIX: widened notchW from 100 → 112 and notchH from 85 → 88
-  // so the 64px number fits fully inside without bleeding over the card border
   const notchW = 112;
   const notchH = 88;
   const r = 24;
@@ -73,7 +68,6 @@ const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
 
   return (
     <div className="relative w-full" ref={containerRef}>
-
       <svg
         className="absolute inset-0 w-full h-full"
         style={{ filter: glassFilter }}
@@ -84,24 +78,13 @@ const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
         <path d={path} fill="rgba(255, 128, 85, 0.1)" stroke="#FFCAB2" strokeWidth="1.5" />
       </svg>
 
-      {/* FIX: number positioned safely inside the notch bounds
-          - top-[12px] right-[12px] keeps it away from the SVG stroke edge
-          - fontSize reduced from 72 → 64 so the full glyph fits within notchW=112
-          - overflow-hidden prevents any accidental bleed */}
       <div
         className="absolute z-10 font-heading"
-        style={{
-          top: '10px',
-          right: '-10px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        style={{ top: '10px', right: '-10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         <GlassNumber value={number} fontSize={72} />
       </div>
 
-      {/* Card content */}
       <div className="relative z-0 flex flex-col px-[20px] sm:px-[24px] pt-[20px] sm:pt-[24px] pb-[20px] sm:pb-[24px]">
         <div className="flex flex-row items-center gap-[12px]" style={{ paddingRight: `${notchW - 20}px`, minHeight: `${notchH - 20}px` }}>
           <div className="w-[36px] h-[36px] sm:w-[44px] sm:h-[44px] rounded-full bg-[#FF8055]/90 border border-[#FFCAB2] flex items-center justify-center shadow-[0_0_16px_rgba(240,90,40,0.4)] shrink-0">
@@ -111,20 +94,11 @@ const MobileCard = ({ number, icon, title, desc, statValue, statLabel }) => {
             {title}
           </h3>
         </div>
-
-        <p className="font-body text-[9px] sm:text-[18px] leading-[1.6] text-[#1A1A1A] mt-[8px]">
-          {desc}
-        </p>
-
-        {/* Stat row */}
+        <p className="font-body text-[9px] sm:text-[18px] leading-[1.6] text-[#1A1A1A] mt-[8px]">{desc}</p>
         <div className="flex items-center gap-3 pt-3 border-t border-[#FFCAB2] mt-1">
-          <span className="font-heading font-extrabold text-[36px] tracking-[-2px] leading-[1] text-[#C03A10] shrink-0">
-            {statValue}
-          </span>
+          <span className="font-heading font-extrabold text-[36px] tracking-[-2px] leading-[1] text-[#C03A10] shrink-0">{statValue}</span>
           <div className="w-[1.5px] h-[28px] bg-[#FFCAB2] shrink-0" />
-          <p className="font-body text-[12px] sm:text-[13px] font-semibold text-[#1A1A1A] leading-[1.3]">
-            {statLabel}
-          </p>
+          <p className="font-body text-[12px] sm:text-[13px] font-semibold text-[#1A1A1A] leading-[1.3]">{statLabel}</p>
         </div>
       </div>
     </div>
@@ -153,21 +127,28 @@ export default function Problem() {
   return (
     <section className="relative w-full flex justify-center items-start pt-0">
 
-      {/* Background glow */}
       <div className="absolute top-[80px] right-[15%] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-[#F05A28]/10 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="relative z-10 w-full max-w-[1280px] px-4 sm:px-8 flex flex-col items-center pt-[10px] pb-[60px]">
 
-        {/* Decorative star */}
-        <img
+        <motion.img
           src={starImage}
           alt=""
           aria-hidden="true"
           className="hidden lg:block absolute left-[40px] top-[40px] w-[250px] h-[250px] -rotate-[15deg] pointer-events-none z-0 select-none"
+          variants={scaleUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
         />
 
-        {/* Header */}
-        <div className="flex flex-col items-center max-w-[639px] gap-[24px] mb-[48px] lg:mb-[80px] relative z-10 text-center">
+        <motion.div
+          className="flex flex-col items-center max-w-[639px] gap-[24px] mb-[48px] lg:mb-[80px] relative z-10 text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <EyebrowPill variant="label">The Problem</EyebrowPill>
 
           <h2
@@ -184,74 +165,65 @@ export default function Problem() {
             <span className="text-brand-orange">6-12 months</span>
             {' '}& Thousands of Dollars before Seeing a Single Working Screen. Here's what goes wrong &mdash;
           </p>
-        </div>
+        </motion.div>
 
-        {/* ── MOBILE / TABLET CARDS (up to lg) ── */}
-        <div className="lg:hidden w-full flex flex-col gap-5">
-          <MobileCard
-            number="01"
-            icon={ICONS.clock}
-            title="Slow development"
-            desc={<>Most agencies take <span className="text-[#FF8055]">6-12 months</span> just to ship a basic MVP. By then, your Market window is closed and competitors have moved in.</>}
-            statValue="12mo"
-            statLabel="average time wasted with typical agencies"
-          />
-          <MobileCard
-            number="02"
-            icon={ICONS.chart}
-            title="Feature Overload"
-            desc={<>Too many unnecessary features bloat the scope, inflate costs, and delay your launch <span className="text-[#F05A28]">by months</span>. You end up building what nobody asked for.</>}
-            statValue="3x"
-            statLabel="Overbudget from unnecessary scope"
-          />
-          <MobileCard
-            number="03"
-            icon={ICONS.alert}
-            title="Unreliable Developers"
-            desc={<>Missed deadlines, Poor communications, and half finished code. You're left <span className="text-[#F05A28]">holding the bag</span> with nothing to show investors or customers.</>}
-            statValue="70%"
-            statLabel="of MVPs never reach launch day"
-          />
-        </div>
+        <motion.div
+          className="lg:hidden w-full flex flex-col gap-5"
+          variants={staggerContainer(0.15)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
+          <motion.div variants={staggerItem}>
+            <MobileCard
+              number="01" icon={ICONS.clock} title="Slow development"
+              desc={<>Most agencies take <span className="text-[#FF8055]">6-12 months</span> just to ship a basic MVP. By then, your Market window is closed and competitors have moved in.</>}
+              statValue="12mo" statLabel="average time wasted with typical agencies"
+            />
+          </motion.div>
+          <motion.div variants={staggerItem}>
+            <MobileCard
+              number="02" icon={ICONS.chart} title="Feature Overload"
+              desc={<>Too many unnecessary features bloat the scope, inflate costs, and delay your launch <span className="text-[#F05A28]">by months</span>. You end up building what nobody asked for.</>}
+              statValue="3x" statLabel="Overbudget from unnecessary scope"
+            />
+          </motion.div>
+          <motion.div variants={staggerItem}>
+            <MobileCard
+              number="03" icon={ICONS.alert} title="Unreliable Developers"
+              desc={<>Missed deadlines, Poor communications, and half finished code. You're left <span className="text-[#F05A28]">holding the bag</span> with nothing to show investors or customers.</>}
+              statValue="70%" statLabel="of MVPs never reach launch day"
+            />
+          </motion.div>
+        </motion.div>
 
-        {/* ── DESKTOP LAYOUT ── */}
-        <div className="hidden lg:flex relative w-full max-w-[1193px] mx-auto items-stretch gap-5 xl:gap-[36px]">
+        <motion.div
+          className="hidden lg:flex relative w-full max-w-[1193px] mx-auto items-stretch gap-5 xl:gap-[36px]"
+          variants={staggerContainer(0.2)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
 
-          {/* Left card */}
-          <div
+          <motion.div
             className="relative flex-none group transition-transform duration-300 hover:-translate-y-1"
             style={{ width: 'clamp(320px, 39%, 465px)', height: '554px' }}
+            variants={staggerScale}
           >
-            <svg
-              className="absolute inset-0 w-full h-full"
-              viewBox="0 0 465 554"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M 32 0 L 285 0 A 20 20 0 0 1 305 20 L 305 120 A 20 20 0 0 0 325 140 L 445 140 A 20 20 0 0 1 465 160 L 465 522 A 32 32 0 0 1 433 554 L 32 554 A 32 32 0 0 1 0 522 L 0 32 A 32 32 0 0 1 32 0 Z"
-                fill="#FF80551A"
-                stroke="#FFCAB2"
-                strokeWidth="1"
-              />
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 465 554" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path d="M 32 0 L 285 0 A 20 20 0 0 1 305 20 L 305 120 A 20 20 0 0 0 325 140 L 445 140 A 20 20 0 0 1 465 160 L 465 522 A 32 32 0 0 1 433 554 L 32 554 A 32 32 0 0 1 0 522 L 0 32 A 32 32 0 0 1 32 0 Z" fill="#FF80551A" stroke="#FFCAB2" strokeWidth="1" />
             </svg>
-
             <div className="absolute top-0 right-0 w-[160px] h-[140px] flex items-center justify-center z-10">
               <GlassNumber id="01" value="01" width={154} height={110} fontSize={96} />
             </div>
-
             <div className="absolute top-[52px] left-[15px] right-[15px] bottom-[20px] z-0 flex flex-col justify-between">
               <div className="flex flex-col gap-[24px]">
-                <div className="w-[48px] h-[48px] rounded-full bg-[#FF8055]/90 border border-[#FFCAB2] flex items-center justify-center shadow-[0_0_16px_rgba(240,90,40,0.4)]">
-                  {ICONS.clock}
-                </div>
+                <div className="w-[48px] h-[48px] rounded-full bg-[#FF8055]/90 border border-[#FFCAB2] flex items-center justify-center shadow-[0_0_16px_rgba(240,90,40,0.4)]">{ICONS.clock}</div>
                 <h3 className="font-heading font-bold text-[28px] tracking-tight text-[#1A1A1A]">Slow development</h3>
                 <p className="font-body text-[18px] leading-[1.6] text-[#1A1A1A]">
                   Most agencies take <span className="text-[#FF8055]">6-12 months</span> just to ship a basic MVP. By then, your Market window is closed and competitors have moved in.
                 </p>
               </div>
-
               <div className="relative mt-auto">
                 <div className="absolute top-[-32px] left-[12px] w-[90%] h-[1px] bg-[#FFCAB2]" />
                 <div className="flex items-center gap-[24px]">
@@ -259,18 +231,14 @@ export default function Problem() {
                     <span className="font-heading font-extrabold text-[110px] leading-[0.8] tracking-[-5px]">12</span>
                     <span className="font-heading font-bold text-[36px] tracking-tight ml-[4px]">mo</span>
                   </div>
-                  <p className="font-body text-[20px] font-bold text-[#1A1A1A] leading-[1.3] max-w-[217px]">
-                    average time wasted with typical agencies
-                  </p>
+                  <p className="font-body text-[20px] font-bold text-[#1A1A1A] leading-[1.3] max-w-[217px]">average time wasted with typical agencies</p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right column */}
           <div className="flex-1 flex flex-col gap-5 xl:gap-[36px] min-w-0">
-
-            <div className="relative w-full h-[259px] group transition-transform duration-300 hover:-translate-y-1">
+            <motion.div className="relative w-full h-[259px] group transition-transform duration-300 hover:-translate-y-1" variants={staggerScale}>
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 692 259" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path d="M 32 0 L 542 0 A 20 20 0 0 1 562 20 L 562 80 A 20 20 0 0 0 582 100 L 672 100 A 20 20 0 0 1 692 120 L 692 227 A 32 32 0 0 1 660 259 L 32 259 A 32 32 0 0 1 0 227 L 0 32 A 32 32 0 0 1 32 0 Z" fill="#FF80551A" stroke="#FFCAB2" strokeWidth="1.5" />
               </svg>
@@ -291,9 +259,9 @@ export default function Problem() {
                   <p className="font-body text-[20px] font-semibold text-[#1A1A1A] leading-[1.3] max-w-[313px]">Overbudget from unnecessary scope</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative w-full h-[259px] group transition-transform duration-300 hover:-translate-y-1">
+            <motion.div className="relative w-full h-[259px] group transition-transform duration-300 hover:-translate-y-1" variants={staggerScale}>
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 692 259" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path d="M 32 0 L 542 0 A 20 20 0 0 1 562 20 L 562 80 A 20 20 0 0 0 582 100 L 672 100 A 20 20 0 0 1 692 120 L 692 227 A 32 32 0 0 1 660 259 L 32 259 A 32 32 0 0 1 0 227 L 0 32 A 32 32 0 0 1 32 0 Z" fill="#FF80551A" stroke="#FFCAB2" strokeWidth="1.5" />
               </svg>
@@ -314,10 +282,10 @@ export default function Problem() {
                   <p className="font-body text-[20px] font-semibold text-[#1A1A1A] leading-[1.3] max-w-[283px]">of MVPs never reach launch day</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

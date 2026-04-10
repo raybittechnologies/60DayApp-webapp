@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer, staggerScale, viewport } from '../../utils/motionVariants';
 import EyebrowPill from '../ui/EyebrowPill';
 
 
 
 // ─── Glass shadow: #FF8055 10% bg + inset highlights on all 4 sides + outer depth ───
 const GLASS_SHADOW = [
-  'inset 0 10px 0 rgba(255, 255, 255, 0.65)',   // TOP — bright white highlight
-  'inset 0 -10px 0 rgba(255, 255, 255, 0.5)',    // BOTTOM — warm subtle tint
-  'inset 10px 0 0 rgba(255, 255, 255, 0.35)',     // LEFT — soft white glow
-  'inset -10px 0 0 rgba(255, 255, 255, 0.35)',    // RIGHT — soft white glow
-  '-3.39px 6.78px 16.95px #9191910D',            // 5% opacity
-  '-11.87px 28.82px 30.51px #9191910A',          // 4% opacity
-  '-26px 64px 40px #91919108',                   // 3% opacity
-  '-46px 115px 48px #91919103',                  // 1% opacity
+  'inset 0 10px 0 rgba(255, 255, 255, 0.65)',   
+  'inset 0 -10px 0 rgba(255, 255, 255, 0.5)',    
+  'inset 10px 0 0 rgba(255, 255, 255, 0.35)',     
+  'inset -10px 0 0 rgba(255, 255, 255, 0.35)',    
+  '-3.39px 6.78px 16.95px #9191910D',            
+  '-11.87px 28.82px 30.51px #9191910A',          
+  '-26px 64px 40px #91919108',                   
+  '-46px 115px 48px #91919103',                  
   '0 4px 12px rgba(255, 128, 85, 0.09)',
   '0 14px 36px rgba(255, 128, 85, 0.07)',
 ].join(', ');
@@ -35,16 +37,18 @@ const SummaryCard = ({ title, subtitle, icon }) => (
       boxShadow: GLASS_SHADOW,
     }}
   >
-    <div
+    <motion.div
       className="
         w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] md:w-[62px] md:h-[62px]
         rounded-full bg-[#FA764E] flex items-center justify-center text-white
         mb-4 sm:mb-5 md:mb-7
       "
       style={{ boxShadow: '0 4px 14px rgba(250,118,78,0.35)' }}
+      animate={{ y: [0, -6, 0], rotate: [0, -5, 5, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
     >
       {icon}
-    </div>
+    </motion.div>
     <h3
       className="font-extrabold leading-none text-[#000] mb-2 text-center"
       style={{ fontSize: 'clamp(22px, 3.5vw, 34px)', letterSpacing: '-1px' }}
@@ -149,10 +153,15 @@ export default function SocialProof() {
   return (
     <section id="about" className="section-outer relative pb-[24px] overflow-hidden">
       <div className="section-inner">
-        {/* Changed from bg-white to a soft peach to help the white glow pop */}
         <div className="w-full bg-[#FFF9F6] pb-[80px] sm:pb-[100px] md:pb-[80px] pt-[36px] flex flex-col items-center rounded-[24px]">
 
-          <div className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[64px] px-4">
+          <motion.div
+            className="flex flex-col items-center max-w-[800px] mb-[40px] sm:mb-[64px] px-4"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+          >
             <EyebrowPill variant="label">Why Choose Us</EyebrowPill>
             <h2 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[56px] leading-[1.15] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
               Built by Experienced <br /> <span className="text-[#F05A28]">Product Engineers</span>
@@ -160,13 +169,25 @@ export default function SocialProof() {
             <p className="font-heading font-extrabold text-[17px] sm:text-[20px] text-[#1A1A1A] text-center mt-[24px]">
               60DayApp is powered by <span className="text-[#F05A28]">Raybit Technologies.</span>
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-[20px] sm:gap-[32px] w-full max-w-[1100px] px-4 sm:px-0">
-            <SummaryCard title="7+ years" subtitle="Experience" icon={ICONS.clock} />
-            <SummaryCard title="40+ Projects" subtitle="Delivered" icon={ICONS.clipboard} />
-            <SummaryCard title="Top Rated" subtitle="Upwork agency" icon={ICONS.badge} />
-          </div>
+          <motion.div
+            className="flex flex-col sm:flex-row items-stretch justify-center gap-[20px] sm:gap-[32px] w-full max-w-[1100px] px-4 sm:px-0"
+            variants={staggerContainer(0.15)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+          >
+            <motion.div variants={staggerScale} className="flex-1">
+              <SummaryCard title="7+ years" subtitle="Experience" icon={ICONS.clock} />
+            </motion.div>
+            <motion.div variants={staggerScale} className="flex-1">
+              <SummaryCard title="40+ Projects" subtitle="Delivered" icon={ICONS.clipboard} />
+            </motion.div>
+            <motion.div variants={staggerScale} className="flex-1">
+              <SummaryCard title="Top Rated" subtitle="Upwork agency" icon={ICONS.badge} />
+            </motion.div>
+          </motion.div>
 
           <div className="flex flex-col items-center mt-[32px] sm:mt-[48px] mb-[60px] sm:mb-[50px] gap-[14px] sm:gap-[16px] px-4">
             <div className="flex flex-wrap justify-center gap-[12px] sm:gap-[20px]">

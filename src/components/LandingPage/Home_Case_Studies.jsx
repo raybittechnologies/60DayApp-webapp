@@ -2,25 +2,37 @@
 
 
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, slideLeft, slideRight, staggerContainer, viewport, float } from '../../utils/motionVariants';
 import EyebrowPill from '../ui/EyebrowPill';
 import Button from '../ui/Button';
 import Phone1 from '../../assets/images/phone1.png';
 import Phone2 from '../../assets/images/phone2.png';
 
 const MockupGroupA = () => (
-  <div className="w-full h-full flex items-center justify-center">
-    <img src={Phone1} alt="App Mockup" className="w-full h-full object-contain" />
+  <div className="w-full h-full flex items-center justify-center pt-4">
+    <motion.img 
+      src={Phone1} 
+      alt="App Mockup" 
+      className="w-full h-full object-contain" 
+      animate={float}
+    />
   </div>
 );
 
 const MockupGroupB = () => (
-  <div className="w-full h-full flex items-center justify-center">
-    <img src={Phone2} alt="App Mockup" className="w-full h-full object-contain" />
+  <div className="w-full h-full flex items-center justify-center pt-4">
+    <motion.img 
+      src={Phone2} 
+      alt="App Mockup" 
+      className="w-full h-full object-contain" 
+      animate={{ y: [0, -12, 0], transition: { duration: 6.5, repeat: Infinity, ease: 'easeInOut' } }}
+    />
   </div>
 );
 
 const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, pills, mockupGroup }) => (
-  <div className="group relative w-full bg-[#FFF3EE] border border-[#FFCAB2] shadow-[0_4px_16px_rgba(200,100,50,0.06)] rounded-[32px] p-[16px] flex flex-col transition-all duration-300 hover:shadow-[0_12px_40px_rgba(200,100,50,0.12)]">
+  <div className="group relative w-full bg-[#FFF3EE] border border-[#FFCAB2] shadow-[0_4px_16px_rgba(200,100,50,0.06)] rounded-[32px] p-[16px] flex flex-col transition-all duration-300 hover:shadow-[0_12px_40px_rgba(200,100,50,0.12)] hover:-translate-y-[6px]">
 
     <div className="relative w-full h-[200px] sm:h-60 md:h-65 bg-linear-to-br from-white to-[#FAFAFA] rounded-[24px] shadow-sm overflow-hidden border border-white">
 
@@ -44,18 +56,18 @@ const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, 
       <h3 className="font-heading font-semibold text-[18px] sm:text-[20px] text-[#C03A10] mt-[16px] sm:mt-[20px] px-[8px] tracking-tight">{title}</h3>
       <p className="font-body text-[14px] sm:text-[16px] font-normal leading-[1.6] text-[#1A1A1A] mt-[8px] px-[8px] min-h-[56px] sm:min-h-[60px]">{desc}</p>
       <div className="w-full h-0 border-b-[2px] border-dotted border-[#DE8662]/30 my-[16px] sm:my-[20px]" />
-      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between px-[4px] sm:px-[8px] pb-[8px] gap-[10px] w-full">
-        <div className="flex flex-row items-center justify-between flex-1 w-full sm:w-auto min-w-[200px]">
+      <div className="flex flex-wrap sm:flex-nowrap items-start justify-between px-[4px] sm:px-[8px] pb-[8px] gap-[10px] w-full">
+        <div className="flex flex-row items-start justify-between flex-1 w-full sm:w-auto min-w-[200px]">
           <div className="flex flex-col flex-1">
             <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat1.value}</span>
             <span className="font-body font-normal text-[12px] sm:text-[13px] xl:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.3] opacity-80">{stat1.label}</span>
           </div>
-          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px]" />
+          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px] mt-[4px]" />
           <div className="flex flex-col flex-1">
             <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat2.value}</span>
             <span className="font-body font-normal text-[12px] sm:text-[13px] xl:text-[14px] text-[#1A1A1A] mt-[4px] leading-[1.3] opacity-80">{stat2.label}</span>
           </div>
-          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px]" />
+          <div className="w-[1.5px] h-[36px] bg-[#DE8662]/30 mx-[8px] sm:mx-[12px] mt-[4px]" />
           <div className="flex flex-col flex-1">
             <div className="flex items-center gap-[2px]">
               <span className="font-heading font-semibold text-[22px] sm:text-[28px] lg:text-[24px] xl:text-[28px] text-[#F05A28] leading-none tracking-tight whitespace-nowrap">{stat3.value}</span>
@@ -104,28 +116,45 @@ export default function CaseStudies() {
   };
 
   return (
-    /*
-      ─ Use section-outer / section-inner for consistent 1440/1280 layout.
-      ─ Remove hardcoded px-[16px] sm:px-[40px] md:px-[80px] — section-outer handles this.
-    */
+    
     <section id="cases" className="section-outer relative pt-[20px] pb-[40px] sm:pb-[60px] overflow-hidden">
       <div className="section-inner flex flex-col items-center">
 
-        {/* Header */}
-        <div className="flex flex-col items-center mb-[48px] sm:mb-[80px]">
+        
+        <motion.div
+          className="flex flex-col items-center mb-[48px] sm:mb-[80px]"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <EyebrowPill variant="label">Case Studies</EyebrowPill>
           <h2 className="font-heading font-bold text-[36px] sm:text-[44px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-center text-[#1A1A1A] mt-[24px]">
             Real Startups. <br /> <span className="text-[#FA6A31]">Real Results.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] md:gap-[32px] w-full max-w-[600px] lg:max-w-none mx-auto">
-          <CaseStudyCard {...expenseCard} />
-          <CaseStudyCard {...travelCard} />
-          <CaseStudyCard {...expenseCard} />
-          <CaseStudyCard {...travelCard} />
-        </div>
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] md:gap-[32px] w-full max-w-[600px] lg:max-w-none mx-auto"
+          variants={staggerContainer(0.15)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
+          <motion.div variants={slideLeft}>
+            <CaseStudyCard {...expenseCard} />
+          </motion.div>
+          <motion.div variants={slideRight}>
+            <CaseStudyCard {...travelCard} />
+          </motion.div>
+          <motion.div variants={slideLeft}>
+            <CaseStudyCard {...expenseCard} />
+          </motion.div>
+          <motion.div variants={slideRight}>
+            <CaseStudyCard {...travelCard} />
+          </motion.div>
+        </motion.div>
 
         <div className="w-full flex justify-center mt-[40px] sm:mt-[64px]">
           <Button variant="ghost" showArrow={true}>View all Case Studies</Button>
