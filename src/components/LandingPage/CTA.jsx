@@ -11,8 +11,8 @@ export default function CTA() {
 
   return (
     
-    <section className="section-outer relative pt-[10px] pb-[40px] sm:pb-[60px]">
-      <div className="section-inner flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[32px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
+    <section className="section-outer relative pt-[10px] pb-0 sm:pb-[20px]">
+      <div className="section-inner flex flex-col gap-[24px] sm:gap-[32px] md:gap-[48px] bg-white rounded-[24px] pt-[32px] sm:pt-[40px] pb-[16px] sm:pb-[40px] px-[16px] sm:px-[24px] md:px-[40px]">
 
         {/* Top CTA Block */}
         <motion.div

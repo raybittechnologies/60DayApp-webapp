@@ -4,7 +4,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section className="section-outer pt-[100px] sm:pt-[120px] lg:pt-[135px] pb-[40px] sm:pb-[60px] lg:pb-[10px] bg-[#FFF5F2]">
+    <section className="section-outer pt-[100px] sm:pt-[120px] lg:pt-[135px] pb-[40px] sm:pb-[60px] lg:pb-[10px] bg-transparent">
       <div className="section-inner">
 
         {/* ── CARD ── */}

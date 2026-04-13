@@ -29,13 +29,13 @@ export default function CaseStudyDetail() {
   };
 
   return (
-    <div className="w-full relative pb-[96px] bg-[#FFF5F2] pt-[100px] sm:pt-[120px] md:pt-[140px]">
+    <div className="w-full relative pb-0 sm:pb-[40px] bg-[#FFF5F2] pt-[100px] sm:pt-[120px] md:pt-[140px]">
       <HeroSection />
 
       <div className="mx-auto w-[92%] max-w-[1240px] mt-[32px] md:mt-[64px] flex flex-col lg:grid lg:grid-cols-[280px_1fr] gap-[24px] md:gap-[64px]">
         <SidebarMenu activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        <div className="flex flex-col w-full pb-[40px] min-h-[400px]">
+        <div className="flex flex-col w-full pb-[10px] min-h-[400px]">
           <ClientHeader />
           {renderActiveTab()}
         </div>

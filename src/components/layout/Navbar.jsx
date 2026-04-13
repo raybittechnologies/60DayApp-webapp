@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import EyebrowPill from '../ui/EyebrowPill';
 import Button from '../ui/Button';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 const NAV_LINKS = [
   { href: '/#how', label: 'How It Works', isRouter: true },
   { href: '/case-study/expense-tracker', label: 'Case Studies', isRouter: true },
   { href: '/about-us', label: 'About Us', isRouter: true },
+  { href: '/blog', label: 'Blogs', isRouter: true },
 ];
 
 export default function Navbar() {
@@ -111,18 +113,39 @@ export default function Navbar() {
             <div className="h-px bg-border-default mx-5" />
 
             <div className="flex flex-col px-5 py-3">
-              {NAV_LINKS.map(({ href, label, isRouter }, i) => {
-                const classes = "font-body text-[17px] font-medium text-text-primary py-4 border-b border-border-default last:border-0 hover:text-brand-orange transition-colors duration-200 block";
-                return isRouter ? (
-                  <motion.div key={href} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.1 }} exit={{ opacity: 0, x: -20 }}>
-                    <Link to={href} onClick={close} className={classes}>{label}</Link>
-                  </motion.div>
-                ) : (
-                  <motion.div key={href} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.1 }} exit={{ opacity: 0, x: -20 }}>
-                    <a href={href} onClick={close} className={classes}>{label}</a>
-                  </motion.div>
-                );
-              })}
+              {NAV_LINKS.map(({ href, label, isRouter }, i) => (
+                <motion.div 
+                  key={href} 
+                  initial={{ opacity: 0, x: -20 }} 
+                  animate={{ opacity: 1, x: 0 }} 
+                  transition={{ delay: 0.2 + i * 0.1 }} 
+                  exit={{ opacity: 0, x: -20 }}
+                >
+                  <NavLink
+                    to={href}
+                    onClick={close}
+                    className={({ isActive }) => 
+                      `flex items-center justify-between font-body text-[18px] font-medium py-4 border-b border-border-default last:border-0 transition-all duration-300 ${
+                        isActive ? 'text-brand-orange pl-2' : 'text-text-primary'
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <span className={isActive ? 'scale-110 origin-left' : ''}>{label}</span>
+                        {isActive && (
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                          >
+                            <ChevronRight className="w-5 h-5" />
+                          </motion.div>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </motion.div>
+              ))}
             </div>
 
             <motion.div 

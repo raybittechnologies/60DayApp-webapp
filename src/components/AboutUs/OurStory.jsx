@@ -4,7 +4,7 @@ import React from 'react';
 
 const OurStory = () => {
   return (
-    <div className="section-outer bg-peach">
+    <div className="section-outer bg-transparent">
       <div
         className="section-inner py-10 sm:py-[64px]"
         style={{ minHeight: '518px' }}

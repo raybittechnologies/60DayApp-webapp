@@ -117,7 +117,7 @@ export default function CaseStudies() {
 
   return (
     
-    <section id="cases" className="section-outer relative pt-[20px] pb-[40px] sm:pb-[60px] overflow-hidden">
+    <section id="cases" className="section-outer relative pt-[20px] pb-[10px] sm:pb-[20px] overflow-hidden">
       <div className="section-inner flex flex-col items-center">
 
         

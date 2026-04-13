@@ -6,6 +6,8 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import AboutUs from './pages/AboutUs';
+import Blog from './pages/Blog';
+import BlogPostDetail from './pages/BlogPostDetail';
 import AnimatedBackground from './components/ui/AnimatedBackground';
 
 function ScrollProgress() {
@@ -66,6 +68,32 @@ function AnimatedRoutes() {
               transition={{ duration: 0.7 }}
             >
               <AboutUs />
+            </motion.div>
+          } 
+        />
+        <Route 
+          path="/blog" 
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <Blog />
+            </motion.div>
+          } 
+        />
+        <Route 
+          path="/blog/:id" 
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <BlogPostDetail />
             </motion.div>
           } 
         />

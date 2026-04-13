@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function EyebrowPill({ variant = 'nav', children }) {
 
@@ -28,27 +29,45 @@ export default function EyebrowPill({ variant = 'nav', children }) {
     );
   }
 
-  const navClass = ({ isActive }) =>
-    `font-body text-base lg:text-lg whitespace-nowrap transition-colors duration-200 hover:text-brand-orange ${isActive ? 'text-brand-orange' : 'text-text-primary'
-    }`;
+  const NavItem = ({ to, children }) => (
+    <NavLink to={to} className={({ isActive }) =>
+      `relative font-body text-base lg:text-[17px] whitespace-nowrap transition-all duration-300 hover:text-brand-orange flex flex-col items-center ${
+        isActive ? 'text-brand-orange font-bold' : 'text-text-primary'
+      }`
+    }>
+      {({ isActive }) => (
+        <>
+          {children}
+          {isActive && (
+            <motion.div
+              layoutId="nav-pill-active-line"
+              className="absolute -bottom-[4px] w-[20px] h-[3px] rounded-full bg-brand-orange"
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            />
+          )}
+        </>
+      )}
+    </NavLink>
+  );
 
   // nav variant (pill with links)
   return (
     <div className="
       flex items-center gap-6 lg:gap-10
-      px-6 lg:px-10
+      px-6 lg:px-12
       h-[52px] md:h-[60px] lg:h-[71px]
       rounded-full
       bg-brand-orange/10
       backdrop-blur-xl
       border border-[#FFCAB2]
-      transition-all duration-300
-      hover:bg-brand-orange/15
+      transition-all duration-500
+      hover:shadow-[0_4px_32px_rgba(240,90,40,0.15)]
       hover:border-brand-orange/40
     ">
-      <NavLink to="/#how" className={navClass}>How It Works</NavLink>
-      <NavLink to="/case-study/expense-tracker" className={navClass}>Case Studies</NavLink>
-      <NavLink to="/about-us" className={navClass}>About Us</NavLink>
+      <NavItem to="/#how">How It Works</NavItem>
+      <NavItem to="/case-study/expense-tracker">Case Studies</NavItem>
+      <NavItem to="/about-us">About Us</NavItem>
+      <NavItem to="/blog">Blogs</NavItem>
     </div>
   );
 }

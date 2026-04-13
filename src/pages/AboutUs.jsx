@@ -8,7 +8,7 @@ import LaunchStartup from '../components/AboutUs/LaunchStartup';
 
 export default function About() {
     return (
-    <div className="w-full bg-[#FFF5F2]">
+    <div className="w-full bg-transparent">
             <Hero />
             <OurStory />
             <OurTeam />

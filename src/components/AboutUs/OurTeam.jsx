@@ -17,7 +17,7 @@ const teamMembers = [
 
 const OurTeam = () => {
     return (
-        <div className="section-outer bg-[#FFF5F2] py-8 sm:py-10">
+        <div className="section-outer bg-transparent py-8 sm:py-10">
             <div
                 className="section-inner bg-white flex flex-col w-full max-w-[1280px] mx-auto rounded-[24px] p-[16px] gap-[65px] lg:min-h-[921px]"
             >
