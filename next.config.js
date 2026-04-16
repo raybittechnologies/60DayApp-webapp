@@ -19,6 +19,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/case-study',
+        destination: '/case-study/expense-tracker',
+        permanent: true,
+      },
+      {
+        source: '/case-studies',
+        destination: '/case-study/expense-tracker',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

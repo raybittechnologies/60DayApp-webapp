@@ -42,7 +42,7 @@ const Footer = () => {
               <ul className="flex flex-col gap-[14px] sm:gap-[16px]">
                 <li><a href="#" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">About Us</a></li>
                 <li><a href="#" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">How it Works</a></li>
-                <li><a href="#" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">Case Studies</a></li>
+                <li><a href="/case-study/expense-tracker" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">Case Studies</a></li>
                 <li><a href="#" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">Our Process</a></li>
                 <li><a href="#" className="font-body text-[#2B2E34] hover:text-[#FA6A31] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">Raybit Technologies</a></li>
                 <li><a href="#" className="underline font-body text-[#F05A28] hover:text-[#BA411C] transition-colors text-[15px] sm:text-[16px] font-normal tracking-tight">Book a call</a></li>
