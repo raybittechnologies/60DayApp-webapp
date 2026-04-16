@@ -6,12 +6,14 @@ import { fadeUp, scaleUp, viewport } from '@/utils/motionVariants';
 import EyebrowPill from '@/components/ui/EyebrowPill';
 import Phone1 from '@/assets/images/phone1.png';
 import Phone2 from '@/assets/images/phone2.png';
+import { caseStudiesData } from '@/data/caseStudies';
 
 const TOTAL = 6;
 const ASSET_W = 398;
 const ASSET_H = 298.5;
 
-export default function HeroSection() {
+export default function HeroSection({ id = 'expense-tracker' }) {
+  const data = caseStudiesData[id]?.hero || caseStudiesData['expense-tracker'].hero;
   const [active, setActive] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -30,7 +32,13 @@ export default function HeroSection() {
     return () => clearInterval(t);
   }, []);
 
-  const getAsset = (index) => (index % 2 === 0 ? Phone1.src : Phone2.src);
+  const getAsset = (index) => {
+    if (data.isMockupA) {
+      return index % 2 === 0 ? Phone1.src : Phone1.src; // Default to grouping A logic 
+    } else {
+      return index % 2 === 0 ? Phone2.src : Phone2.src; // Grouping B logic 
+    }
+  };
 
   const slots = [
     { key: (active - 1 + TOTAL) % TOTAL, pos: 'left' },
@@ -58,14 +66,12 @@ export default function HeroSection() {
           whileInView="visible"
           viewport={viewport}
         >
-          <EyebrowPill variant="label">IT Industry</EyebrowPill>
+          <EyebrowPill variant="label">{data.industry}</EyebrowPill>
           <h1 className="font-heading font-black text-[32px] sm:text-[52px] md:text-[64px] leading-[1.05] tracking-[-1.5px] mt-[14px]">
-            <span className="text-[#F05A28]">Expense Tracking</span><br />
-            <span className="text-[#1A1A1A]">Mobile App</span>
+            <span className="text-[#F05A28]">{data.titlePart1}</span><br />
+            <span className="text-[#1A1A1A]">{data.titlePart2}</span>
           </h1>
-          <p className="font-[400] text-[14px] sm:text-[16px] text-[#1A1A1A] max-w-[756px] mt-[14px] leading-[1.65]">
-            A smart expense tracking app with AI-powered spend categorisation, budget alerts,
-            multi-currency support, and monthly reports — built and live on both stores in just 8 weeks.
+          <p className="font-[400] text-[14px] sm:text-[16px] text-[#1A1A1A] max-w-[756px] mt-[14px] leading-[1.65]" dangerouslySetInnerHTML={{ __html: data.description }}>
           </p>
         </motion.div>
 

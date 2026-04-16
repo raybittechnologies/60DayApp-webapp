@@ -2,8 +2,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, viewport } from '@/utils/motionVariants';
+import { caseStudiesData } from '@/data/caseStudies';
 
-export default function ClientHeader() {
+export default function ClientHeader({ id = 'expense-tracker' }) {
+  const data = caseStudiesData[id]?.client || caseStudiesData['expense-tracker'].client;
   return (
     <motion.div 
       className="mx-auto bg-[#FF8055] rounded-[16px] overflow-hidden relative mb-[32px] md:mb-[48px] px-5 py-4 md:px-[40px] md:py-0 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 shadow-[0_8px_32px_rgba(255,128,85,0.15)] w-full max-w-[398px] md:max-w-[907px] h-[162px] md:min-h-[153px]"
@@ -38,16 +40,16 @@ export default function ClientHeader() {
       <div className="flex items-center gap-4 md:gap-[24px] z-10 w-full md:w-auto">
         {/* Logo Circle */}
         <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] bg-white rounded-full flex items-center justify-center shadow-sm flex-none">
-          <span className="font-heading italic font-extrabold text-[#1A1A1A] text-[18px] md:text-[24px] tracking-tight">ABC</span>
+          <span className="font-heading italic font-extrabold text-[#1A1A1A] text-[18px] md:text-[24px] tracking-tight">{data.initials}</span>
         </div>
         
         {/* Text Content */}
         <div className="flex flex-col">
           <h3 className="font-heading font-bold text-[18px] md:text-[24px] leading-tight text-white tracking-tight">
-            ABC Software Solutions
+            {data.name}
           </h3>
           <p className="font-body font-normal text-[14px] md:text-[17px] text-white/90">
-            Saudi Arabia
+            {data.location}
           </p>
         </div>
       </div>

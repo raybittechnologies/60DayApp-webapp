@@ -3,6 +3,7 @@
 
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { fadeUp, slideLeft, slideRight, staggerContainer, viewport, float } from '@/utils/motionVariants';
 import EyebrowPill from '@/components/ui/EyebrowPill';
@@ -32,8 +33,8 @@ const MockupGroupB = () => (
   </div>
 );
 
-const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, pills, mockupGroup }) => (
-  <div className="group relative w-full bg-[#FFF3EE] border border-[#FFCAB2] shadow-[0_4px_16px_rgba(200,100,50,0.06)] rounded-[32px] p-[16px] flex flex-col transition-all duration-300 hover:shadow-[0_12px_40px_rgba(200,100,50,0.12)] hover:-translate-y-[6px]">
+const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, pills, mockupGroup, href = '#' }) => (
+  <Link href={href} className="group relative w-full bg-[#FFF3EE] border border-[#FFCAB2] shadow-[0_4px_16px_rgba(200,100,50,0.06)] rounded-[32px] p-[16px] flex flex-col transition-all duration-300 hover:shadow-[0_12px_40px_rgba(200,100,50,0.12)] hover:-translate-y-[6px]">
 
     <div className="relative w-full h-[200px] sm:h-60 md:h-65 bg-linear-to-br from-white to-[#FAFAFA] rounded-[24px] shadow-sm overflow-hidden border border-white">
 
@@ -88,7 +89,7 @@ const CaseStudyCard = ({ tagLabel, badgeTime, title, desc, stat1, stat2, stat3, 
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default function CaseStudies() {
@@ -98,6 +99,7 @@ export default function CaseStudies() {
     title: "Expense Tracking Mobile App",
     desc: "A smart expense tracking app with AI-powered spend categorisation, budget alerts, multi-currency support, and monthly reports — built and live on both stores in just 8 weeks.",
     mockupGroup: 'A',
+    href: '/case-study/expense-tracker',
     stat1: { value: "8wk", label: "Built & launched" },
     stat2: { value: "1k+", label: "Users in first month" },
     stat3: { value: "4.8", label: "App Store rating", icon: true },
@@ -110,6 +112,7 @@ export default function CaseStudies() {
     title: "Travel Booking Platform",
     desc: "A complete holiday booking app with flight search, hotel listings, itinerary planning, and secure payment checkout — from wireframes to both App Stores in 55 days.",
     mockupGroup: 'B',
+    href: '/case-study/travel-booking',
     stat1: { value: "55d", label: "Idea to both stores" },
     stat2: { value: "500+", label: "Bookings in week one" },
     stat3: { value: "4.8", label: "App Store rating", icon: true },
@@ -158,7 +161,9 @@ export default function CaseStudies() {
         </motion.div>
 
         <div className="w-full flex justify-center mt-[40px] sm:mt-[64px]">
-          <Button variant="ghost" showArrow={true}>View all Case Studies</Button>
+          <Link href="/case-study/expense-tracker">
+            <Button variant="ghost" showArrow={true}>View all Case Studies</Button>
+          </Link>
         </div>
       </div>
     </section>
