@@ -1,0 +1,161 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  /* Colors */
+  --color-brand-orange:       #F05A28;
+  --color-brand-orange-light: #FF8055;
+  --color-soft-gray:          #F9FAFB;
+  --color-text-primary:       #1A1A1A;
+  --color-text-body:          #4B5563;
+  --color-border-default:     #E5E7EB;
+  --color-bg-peach:           #FFF3EE;
+
+  /* Font Families */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Border Radius */
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+
+  /* Box Shadows */
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-orange:    0 4px 16px rgba(240, 90, 40, 0.25);
+  --shadow-orange-lg: 0 8px 32px rgba(240, 90, 40, 0.35);
+}
+
+/* ── BASE STYLES ─────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-gutter: stable; /* Reserve space for scrollbar */
+    
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-peach);
+    color: #1A1A1A;
+  }
+
+
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* ── LAYOUT HELPERS ──────────────────────────── */
+@layer components {
+
+ 
+
+  .section-outer {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .section-outer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-outer {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .section-outer {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+  }
+
+  .section-inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── WordPress Post Content Typography ── */
+  .wp-content h1,
+  .wp-content h2,
+  .wp-content h3,
+  .wp-content h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .wp-content h2 { font-size: 28px; }
+  .wp-content h3 { font-size: 22px; }
+  .wp-content h4 { font-size: 18px; }
+  .wp-content p  { margin-bottom: 1.5rem; }
+  .wp-content a  { color: #F05A28; text-decoration: underline; }
+  .wp-content a:hover { color: #CC431B; }
+  .wp-content ul { list-style-type: disc;    padding-left: 2rem; margin-bottom: 1.5rem; }
+  .wp-content ol { list-style-type: decimal; padding-left: 2rem; margin-bottom: 1.5rem; }
+  .wp-content li { margin-bottom: 0.5rem; }
+  .wp-content blockquote {
+    border-left: 4px solid #F05A28;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(240, 90, 40, 0.04);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #404040;
+  }
+  .wp-content img {
+    border-radius: 12px;
+    margin: 2rem 0;
+    max-width: 100%;
+    height: auto;
+  }
+  .wp-content strong { font-weight: 700; color: #1A1A1A; }
+  .wp-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+}
