@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  allowedDevOrigins: ['192.168.100.8'],
+  allowedDevOrigins: ['192.168.100.5', '192.168.100.8'],
   devIndicators: {
     appIsrStatus: false,
   },
