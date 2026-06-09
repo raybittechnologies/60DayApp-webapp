@@ -1,9 +1,4 @@
-/**
- * Shared Framer Motion animation variants for the landing page.
- * Import and use with <motion.div variants={...} initial="hidden" whileInView="visible">
- */
 
-// ── Fade up (default section reveal) ──
 export const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -13,7 +8,6 @@ export const fadeUp = {
   },
 };
 
-// ── Fade in (no movement) ──
 export const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
@@ -22,7 +16,6 @@ export const fadeIn = {
   },
 };
 
-// ── Slide in from left ──
 export const slideLeft = {
   hidden: { opacity: 0, x: -60 },
   visible: {
@@ -32,7 +25,6 @@ export const slideLeft = {
   },
 };
 
-// ── Slide in from right ──
 export const slideRight = {
   hidden: { opacity: 0, x: 60 },
   visible: {
